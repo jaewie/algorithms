@@ -1,22 +1,7 @@
 import random
 
-def binary_search(lst, x):
-    
-    low, high = 0, len(lst)
-    
-    while low <= high:
-        
-        mid = (high + low) / 2
-        
-        if lst[mid] < x:
-            low = mid + 1
-        elif lst[mid] > x:
-            high = mid - 1
-        else:
-            return mid
-    return None
-
 def quick_sort(lst):
+    ''' Randomized quicksort. Avg: O(n log n). Worst: O(n^2)'''
     
     if len(lst) <= 1:
         return lst
@@ -62,6 +47,33 @@ def _merge(left_lst, right_lst):
     lst.extend(right_lst[j:])
     return lst
 
+def insertion_sort(lst):
+    
+    for i in range(len(lst)):
+        j = i
+        temp = lst[i]
+        while j > 0 and lst[j-1] > temp:
+            lst [j] = lst[j-1]
+            j -= 1
+        lst[j] = temp
+    return lst
+
+def bubble_sort(lst):
+    for i in range(len(lst)):
+        for j in range(len(lst) - 1):
+            if lst[j] > lst[j+1]:
+                lst[j], lst[j+1] = lst[j+1], lst[j]
+    return lst
+
+def selection_sort(lst):
+    
+    for i in range(len(lst)):
+        m = i
+        for j in range(i, len(lst)):
+            if lst[j] < lst[m]:
+                m = j
+        lst[i], lst[m] = lst[m], lst[i]
+    return lst
 
 def radix_sort(lst):
     digits = len(str(max(lst)))
@@ -77,11 +89,18 @@ def radix_sort(lst):
 
     return lst
 
-
-
-lst = [10, 3, 2, 4, 100, 120, 50]
-print radix_sort(lst)
-
-           
-            
-            
+def binary_search(lst, x):
+    
+    low, high = 0, len(lst)
+    
+    while low <= high:
+        
+        mid = (high + low) / 2
+        
+        if lst[mid] < x:
+            low = mid + 1
+        elif lst[mid] > x:
+            high = mid - 1
+        else:
+            return mid
+    return None
