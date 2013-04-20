@@ -5,30 +5,23 @@ def quick_sort(lst):
     
     if len(lst) <= 1:
         return lst
-    
     pivot = lst[random.randint(0, len(lst) - 1)]
     less = [x for x in lst if x < pivot]
     bigger = [x for x in lst if x > pivot]
-    
     return quick_sort(less) + [pivot] + quick_sort(bigger)
 
 
 def merge_sort(lst):
-    
+
     if len(lst) <= 1:
         return lst
-
     left = merge_sort(lst[:len(lst)/2])
     right = merge_sort(lst[len(lst)/2:])
-
     return _merge(left, right)
 
 def _merge(left_lst, right_lst):
-    
     lst = []
-    
     i, j = 0, 0
-    
     while i < len(left_lst) and j < len(right_lst):
         
         if left_lst[i] < right_lst[j]:
@@ -42,7 +35,6 @@ def _merge(left_lst, right_lst):
             lst.append(right_lst[j])
             i += 1
             j += 1
-    
     lst.extend(left_lst[i:])
     lst.extend(right_lst[j:])
     return lst
@@ -66,7 +58,6 @@ def bubble_sort(lst):
     return lst
 
 def selection_sort(lst):
-    
     for i in range(len(lst)):
         m = i
         for j in range(i, len(lst)):
@@ -90,13 +81,9 @@ def radix_sort(lst):
     return lst
 
 def binary_search(lst, x):
-    
     low, high = 0, len(lst)
-    
     while low <= high:
-        
         mid = (high + low) / 2
-        
         if lst[mid] < x:
             low = mid + 1
         elif lst[mid] > x:
@@ -106,10 +93,8 @@ def binary_search(lst, x):
     return None
 
 def heap_sort(lst):
-    
     make_heap(lst)
     res = []
-
     while lst:
         temp = lst[0]
         res.append(temp)
@@ -119,7 +104,7 @@ def heap_sort(lst):
 
 
 def make_heap(lst):
-    
     for i in range(lst/2 - 1, -1, -1):
-        
+        bubble_down(lst, i)
+
         
