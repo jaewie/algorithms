@@ -104,3 +104,22 @@ def binary_search(lst, x):
         else:
             return mid
     return None
+
+def heap_sort(lst):
+    
+    make_heap(lst)
+    res = []
+
+    while lst:
+        temp = lst[0]
+        res.append(temp)
+        lst[0] = lst[len(lst) -1]
+        lst.pop()
+    return res
+
+
+def make_heap(lst):
+    
+    for i in range(lst/2 - 1, -1, -1):
+        
+        
