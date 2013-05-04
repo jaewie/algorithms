@@ -1,8 +1,6 @@
 def rem_duplicates(lst):
 
-    hit = []
-    for i in range(256):
-        hit.append(False)        
+    hit = [False for i in range(256)]      
     hit[ord(lst[0])] = True
     tail = 1
     
@@ -60,5 +58,32 @@ def _insert(str1, char, ind):
     
     return ''.join(a)
 
+def largest_block(s):
+    if not s:
+        return -1
+    if len(s) == 1:
+        return 0
+    
+    i = 0
+    largest_count = [0, 0]
+    boo = True
+    
+    while i < len(s) - 1:
+        
+        if boo:
+            cur_count = [i, 0]
+            boo = False
+        
+        if s[i] == s[i+1]:
+            cur_count[1] += 1
+        else:
+            boo = True
+            if cur_count[1] > largest_count[1]:
+                largest_count = cur_count
+        i += 1
+    
+    if cur_count[1] > largest_count[1]:
+        largest_count = cur_count
+        
+    return largest_count[0]
 
-print permutation("abc")
