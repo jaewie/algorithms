@@ -1,7 +1,9 @@
+from copy import deepcopy
+
 def krushkals(adj_list):
     '''Return a minimum spanning tree of adj_list using Krushka's algo.'''
 
-    adj_list = dict(adj_list)
+    adj_list = deepcopy(adj_list)
     expected_mst_edges = (len(adj_list.keys()) - 1) * 2
     mst = {k:[] for k in adj_list}
     for node in adj_list:
@@ -29,7 +31,7 @@ def get_min_weight_edge(adj_list):
     min_edge = None
     for key in adj_list:
         if adj_list[key]: # If this node has edges
-            cur_edge= [key] + list(adj_list[key][0])
+            cur_edge = [key] + list(adj_list[key][0])
             if min_edge is None:
                 min_edge = [key] + list(cur_edge)
         min_edge = min(min_edge, cur_edge, key= lambda x: x[2])    
@@ -51,22 +53,24 @@ def is_connected(adj_list, node):
 def get_edge_num(adj_list):
     ''' Return the total number of edges in the graph (adj_list.'''
 
-    return sum([len(v) for k,v in adj_list.iteritems()])
+    return sum((len(v) for k,v in adj_list.iteritems()))
     
 def prims(adj_list):
     '''Return a minimum spanning tree of adj_list using Prim's algo.'''
 
-    adj_list = dict(adj_list)
+    adj_list = deepcopy(adj_list)
     expected_mst_edges = (len(adj_list.keys()) - 1) * 2
     mst = {adj_list.iterkeys().next():[]} # Choose any one node
-    copy = {}
     for node in adj_list:
         adj_list[node].sort(key=lambda x: x[1]) # Sort by weight edge    
     
     while get_edge_num(mst) < expected_mst_edges:
-        for node in mst:
+        copy = {}
+        
+        for node in mst: # Get the minimum edge among nodes in mst
             copy[node] = adj_list[node]
         min_edge = get_min_weight_edge(copy)
+        
         first_node = min_edge[0]
         sec_node = min_edge[1]
         weight = min_edge[2]        
@@ -75,10 +79,8 @@ def prims(adj_list):
             edge_sec_node = (first_node, weight)
             mst[first_node] = mst.get(first_node, []) +[(edge_first_node)]
             mst[sec_node] = mst.get(sec_node, []) + [(edge_sec_node)]
-        print min_edge
-        del adj_list[first_node][0]
-        del adj_list[sec_node][0]
-        copy = {}
+        adj_list[first_node].remove((sec_node, weight))
+        adj_list[sec_node].remove((first_node, weight))
     return mst            
     
     
@@ -91,6 +93,5 @@ if __name__ == "__main__":
     adj_list['c'] = [('a', 90), ('d', 80), ('b', 6000)]
     adj_list['d'] = [('c', 80), ('a', 3000), ('b', 4000), ('e', 70)]
     adj_list['e'] = [('b', 50), ('d', 70), ('a', 2000)]
-    #print krushkals(adj_list)
+    print krushkals(adj_list)
     print prims(adj_list)
-    

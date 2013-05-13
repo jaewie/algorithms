@@ -101,10 +101,25 @@ def is_leaf(node):
 
     return node and not node.left and not node.right
     
-root = None
+def orint_perimeter(node):
+    '''Print the perimeter of tree rooted at node.'''
+    
+    copy = node    
+    while node.left and not is_leaf(copy):
+        print copy.v
+        copy = copy.left
+    print_leaves(node)
+    copy = node
+    while node.right and not is_leaf(copy):
+        print co.v
+        copy = copy.right
 
-insert_into_BST(root, Node(3))
-print root
+def print_leaves(node):
+    '''Print the leaves of node.'''
+    if node:
+        if is_leaf(node):
+            print node.v
+        else:
+            print_leaves(node.left)
+            print_leaves(node.right)
 
-                
-                
