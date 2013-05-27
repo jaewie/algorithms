@@ -101,7 +101,7 @@ def is_leaf(node):
 
     return node and not node.left and not node.right
     
-def orint_perimeter(node):
+def print_perimeter(node):
     '''Print the perimeter of tree rooted at node.'''
     
     copy = node    

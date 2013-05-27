@@ -36,16 +36,22 @@ def exists_loop(node):
         slow_node = slow_node.next
     return False
 
-    
-    
-    
-    
-    
-a = Node(1)
-b = Node(2)
-c = Node(3)
-a.next = b
-b.next = c
 
+def nth_node(node, n):
+    ''' Return the nth last node.'''
 
-print exists_loop(a)
+    if not node or n < 1:
+        return None
+    
+    fast_node = node
+    slow_node = node
+    
+    for i in range(n-1):
+        fast_node = fast_node.next
+        if not fast_node:
+            return None
+        
+    while fast_node.next:
+        fast_node = fast_node.next
+        slow_node = slow_node.next
+    return slow_node

@@ -83,9 +83,6 @@ def prims(adj_list):
         adj_list[sec_node].remove((first_node, weight))
     return mst            
     
-    
-    
-    
 if __name__ == "__main__":
     adj_list = {}
     adj_list['a'] = [('c', 90), ('d', 3000), ('e', 2000), ('b', 60)]

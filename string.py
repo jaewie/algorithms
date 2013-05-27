@@ -1,4 +1,5 @@
 def rem_duplicates(lst):
+    '''Remove any duplicates in lst.'''
 
     hit = [False for i in range(256)]      
     hit[ord(lst[0])] = True
@@ -16,7 +17,8 @@ def rem_duplicates(lst):
     return lst
 
 def is_anagrams(a, b):
-    
+    '''Return whether string a and b are anagrams.'''
+
     a_count = {}
     b_count = {}
     
@@ -35,55 +37,18 @@ def is_anagrams(a, b):
             return False
     return True
 
-def permutation(string):
-    return _permute([c for c in string])
-    
-def _permute(lst):
-    
-    if len(lst) <= 1:
-        return lst
-    
-    char = lst[0]
-    perms = _permute(lst[1:])
-    new_perms = []
-    for word in perms:
-        for j in range(len(word) + 1):
-            new_perms.append(_insert(word, char, j))
-    return new_perms
+def first_non_repeated_char(string):
+    '''Return the first non repeated character in string.'''
 
-def _insert(str1, char, ind):
+    d = {}
     
-    a = list(str1)
-    a.insert(ind, char)
-    
-    return ''.join(a)
-
-def largest_block(s):
-    if not s:
-        return -1
-    if len(s) == 1:
-        return 0
-    
-    i = 0
-    largest_count = [0, 0]
-    boo = True
-    
-    while i < len(s) - 1:
-        
-        if boo:
-            cur_count = [i, 0]
-            boo = False
-        
-        if s[i] == s[i+1]:
-            cur_count[1] += 1
+    for char in string:
+        if d.get(char):
+            d[char] = "Repeated"
         else:
-            boo = True
-            if cur_count[1] > largest_count[1]:
-                largest_count = cur_count
-        i += 1
+            d[char] = "First"
     
-    if cur_count[1] > largest_count[1]:
-        largest_count = cur_count
-        
-    return largest_count[0]
-
+    for char in string:
+        if d[char] == "First":
+            return char
+    return -1
