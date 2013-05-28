@@ -1,7 +1,7 @@
 from copy import deepcopy
 
 def krushkals(adj_list):
-    '''Return a minimum spanning tree of adj_list using Krushka's algo.'''
+    '''Return a minimum spanning tree of adj_list using Krushkal's algo.'''
 
     adj_list = deepcopy(adj_list) # Since we need to modify adj_list
     expected_mst_edges = (len(adj_list.keys()) - 1) * 2
@@ -51,7 +51,7 @@ def is_connected(adj_list, node):
     return False
         
 def get_edge_num(adj_list):
-    ''' Return the total number of edges in the graph (adj_list.'''
+    ''' Return the total number of edges in the graph (adj_list).'''
 
     return sum((len(v) for k,v in adj_list.iteritems()))
     
@@ -84,8 +84,8 @@ def prims(adj_list):
     return mst            
 
 def a_star(start, end, coords):
-    '''Return the shortest route from start coord to end coord using
-    A* algorithm'''
+    '''Return the shortest route from start coord to end coord using A*
+    algorithm'''
 
     coords = deepcopy(coords) # Since we have to modify the coordinates
     start = deepcopy(start)
