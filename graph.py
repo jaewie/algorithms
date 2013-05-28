@@ -3,7 +3,7 @@ from copy import deepcopy
 def krushkals(adj_list):
     '''Return a minimum spanning tree of adj_list using Krushka's algo.'''
 
-    adj_list = deepcopy(adj_list)
+    adj_list = deepcopy(adj_list) # Since we need to modify adj_list
     expected_mst_edges = (len(adj_list.keys()) - 1) * 2
     mst = {k:[] for k in adj_list}
     for node in adj_list:
@@ -58,7 +58,7 @@ def get_edge_num(adj_list):
 def prims(adj_list):
     '''Return a minimum spanning tree of adj_list using Prim's algo.'''
 
-    adj_list = deepcopy(adj_list)
+    adj_list = deepcopy(adj_list) # Since we need to modify adj_list
     expected_mst_edges = (len(adj_list.keys()) - 1) * 2
     mst = {adj_list.iterkeys().next():[]} # Choose any one node
     for node in adj_list:
@@ -82,13 +82,106 @@ def prims(adj_list):
         adj_list[first_node].remove((sec_node, weight))
         adj_list[sec_node].remove((first_node, weight))
     return mst            
+
+def a_star(start, end, coords):
+    '''Return the shortest route from start coord to end coord using
+    A* algorithm'''
+
+    coords = deepcopy(coords) # Since we have to modify the coordinates
+    start = deepcopy(start)
+    start["g_score"], start["h_score"], start["f_score"] = 0, 0, 0
+    start["prev"] = []
+    visited = []
+    to_discover = [start]
     
+    while to_discover:
+        cur_node = get_min_fscore_coord(to_discover)
+        to_discover.remove(cur_node)
+        is_end = cur_node["is_end"]
+        x, y = cur_node['x'], cur_node['y']
+        
+        if is_end: # Found finishing node
+            return cur_node["prev"] + [(x, y)]
+    
+        to_discover += get_valid_neighbors(cur_node, end, coords, visited)
+        visited += [(x, y)]
+    return None
+
+def get_min_fscore_coord(to_discover):
+    '''Return the coord with minimum f score in list to_discover '''
+
+    f_score = min(coord['f_score'] for coord in to_discover)
+    
+    for coord in to_discover:
+        if coord['f_score'] == f_score:
+            return coord
+    return None
+
+
+def get_valid_neighbors(cur_node, end, coords, visited):
+    ''' Return list of valid neighbors for cur_node.'''
+
+    x, y = cur_node['x'], cur_node['y']
+    is_wall = cur_node["is_wall"]
+    valid_neighbors = []
+    
+    to_check = [(x+1, y), (x-1, y), (x, y+1), (x, y-1)]
+    
+    for c in to_check:
+        if is_in_board_and_not_visited(c, coords, visited):
+            coord = get_coord(c, coords)
+            coord['prev'] = cur_node['prev'] + [(x, y)]
+            update_scores(coord, cur_node, end)
+            valid_neighbors += [coord]
+    return valid_neighbors
+        
+        
+def is_in_board_and_not_visited(coord, coords, visited):
+    '''Return if coord is inside the board, not a wall, and was not visited.'''
+
+    viable_coords = [(c['x'], c['y']) for c in coords if not c["is_wall"]]
+    return coord in viable_coords and coord not in visited
+        
+def get_coord(c, coordinates):
+    '''Return the dictionary coord for tuple c inside coordinates.'''
+
+    for coord in coordinates:
+        if coord['x'] == c[0] and coord['y'] == c[1]:
+            return coord
+    return None
+
+def calculate_hscore(cur_node, end_node):
+    '''Return the h score of cur_node.'''
+
+    x_dist = abs(cur_node['x'] - end_node['x'])
+    y_dist = abs(cur_node['y'] - end_node['y'])
+    return x_dist + y_dist
+
+def update_scores(coord, visiting_coord, end_node):
+    '''Update h score for coord.'''
+
+    coord['g_score'] = visiting_coord['g_score'] + 1
+    coord['h_score'] = calculate_hscore(coord, end_node)
+    coord['f_score'] = coord['g_score'] + coord['h_score']    
+    
+
+    
+# cooords: [coord. coord2, ...]
+# coord: {x: val, y: val, is_start: val, is_end: val, is_wall: val
+            # prev:[], h_score: val, f_score:}
+    
+
 if __name__ == "__main__":
-    adj_list = {}
-    adj_list['a'] = [('c', 90), ('d', 3000), ('e', 2000), ('b', 60)]
-    adj_list['b'] = [('a', 60), ('c', 6000), ('d', 4000), ('e', 50)]
-    adj_list['c'] = [('a', 90), ('d', 80), ('b', 6000)]
-    adj_list['d'] = [('c', 80), ('a', 3000), ('b', 4000), ('e', 70)]
-    adj_list['e'] = [('b', 50), ('d', 70), ('a', 2000)]
-    print krushkals(adj_list)
-    print prims(adj_list)
+    c1 = {'x': 0, 'y': 0, 'is_start': True, 'is_wall': False, 'is_end':False}
+    c2 = {'x': 1, 'y': 0, 'is_start': False, 'is_wall': True, 'is_end':False}
+    c3 = {'x': 2, 'y': 0, 'is_start': False, 'is_wall': False, 'is_end':False}
+    c4 = {'x': 0, 'y': 1, 'is_start': False, 'is_wall': False, 'is_end':False}
+    c5 = {'x': 1, 'y': 1, 'is_start': False, 'is_wall': True, 'is_end':False}
+    c6 = {'x': 2, 'y': 1, 'is_start': False, 'is_wall': False, 'is_end':False}
+    c7 = {'x': 0, 'y': 2, 'is_start': False, 'is_wall': False, 'is_end':False}
+    c8 = {'x': 1, 'y': 2, 'is_start': False, 'is_wall': False, 'is_end':False}
+    c9 = {'x': 2, 'y': 2, 'is_start': False, 'is_wall': False, 'is_end':True}
+    coords = [c1, c2, c3,c4, c5, c6, c7, c8, c9]
+    start = c1
+    end = c9
+    print(a_star(start, end, coords))
