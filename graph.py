@@ -1,20 +1,20 @@
 from copy import deepcopy
 
-def krushkals(adj_list):
-    '''Return a minimum spanning tree of adj_list using Krushkal's algo.'''
+def kruskals(adj_list):
+    '''Return a minimum spanning tree of adj_list using Kruskal's algo.'''
 
     adj_list = deepcopy(adj_list) # Since we need to modify adj_list
     expected_mst_edges = (len(adj_list.keys()) - 1) * 2
     mst = {k:[] for k in adj_list}
     for node in adj_list:
         adj_list[node].sort(key=lambda x: x[1]) # Sort by weight edge
-        
+
     while get_edge_num(mst) < expected_mst_edges:
         min_edge = get_min_weight_edge(adj_list)
         first_node = min_edge[0]
         sec_node = min_edge[1]
         weight = min_edge[2]
-        
+
         if not does_create_cycle(mst, min_edge): # Then include edge in MST
             edge_first_node = (sec_node, weight)
             edge_sec_node = (first_node, weight)
@@ -34,7 +34,7 @@ def get_min_weight_edge(adj_list):
             cur_edge = [key] + list(adj_list[key][0])
             if min_edge is None:
                 min_edge = [key] + list(cur_edge)
-        min_edge = min(min_edge, cur_edge, key= lambda x: x[2])    
+        min_edge = min(min_edge, cur_edge, key = lambda x: x[2])    
     return min_edge
 
 def does_create_cycle(adj_list, edge):
