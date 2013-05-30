@@ -45,7 +45,9 @@ class Node(object):
         
     def left_rotate(self):
         '''Left rotate.'''
-
+        
+        # This is messy. Need to clean up
+        
         # Rotating A when it has no parent is the same as rotating C to the left
         #   A                C
         #  / \              / \
