@@ -8,7 +8,7 @@ def quick_sort(lst):
     pivot = lst[random.randint(0, len(lst) - 1)]
     less = [x for x in lst if x < pivot]
     bigger = [x for x in lst if x > pivot]
-    return quick_sort(less) + [pivot] + quick_sort(bigger)
+    return quick_sort(less) + [x for x in lst if x == pivot] + quick_sort(bigger)
 
 
 def merge_sort(lst):
@@ -143,5 +143,3 @@ def bubble_down(lst, i):
             i = child
         else:
             break
-        
-        
