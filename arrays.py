@@ -11,7 +11,7 @@ def max_subarray(lst):
     return max_so_far
 
 def quick_select(lst, n):
-    '''Return the nth biggest number in lst using quick select.'''
+    '''Return the nth smallest number in lst using quick select.'''
     
     if not lst or len(lst) < n:
         return None
