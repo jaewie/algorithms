@@ -5,9 +5,12 @@ class Node(object):
         
         
 def rev_LL(node):
-    ''' Reverse singly linked list node and then return its new head'''
-
-    return _rev_LL(node, node.next)
+    ''' Reverse singly linked list node and then return its new head node'''
+    
+    if node:
+        next_node = node.next
+        node.next = None
+        return _rev_LL(node, next_node)
 
 
 def _rev_LL(prev_node, cur_node):
