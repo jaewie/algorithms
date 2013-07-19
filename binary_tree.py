@@ -10,7 +10,7 @@ def in_order(root):
     '''Return the inorder traversal of node'''
     
     if root:
-        return in_order(root.left) + [root.d] + in_order(root.right)
+        return in_order(root.left) + [root.data] + in_order(root.right)
     return []
 
 
@@ -54,6 +54,7 @@ def is_BST(root):
 
 def rec_DFS(node, lst=[]):
     '''Return a DFS of node recursively'''
+
     if node:
         lst.append(node.data)
         if node.left:
