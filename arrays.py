@@ -1,5 +1,6 @@
 import random
 
+
 def max_subarray(lst):
     '''Return the maximum sum of a subarray in lst.'''
 
@@ -14,18 +15,13 @@ def quick_select(lst, n):
     '''Return the nth smallest number in lst using quick select.'''
     
     if not lst or len(lst) < n:
-        raise IndexError("There is no nth number in lst")
+        raise IndexError("lst doesn't have n elements")
     
-    piv = lst[random.randint(0, len(lst) - 1)]
+    ind = random.randint(0, len(lst) - 1)
+    piv = lst[ind]
     less = [x for x in lst if x < piv]
     same = [x for x in lst if x == piv]
     bigger = [x for x in lst if x > piv]
-    
-    # [1, 2, 3] [4, 4], [5, 6 , 7]
-    
-    # if n is between 3 - 4 return pivot
-    # if n is less than 3 return qs of left, n
-    # otherwise return qs of bigger, n - len(less) and len(same)
     
     if n < len(less):
         return quick_select(less, n)
@@ -33,3 +29,27 @@ def quick_select(lst, n):
         return piv
     else:
         return quick_select(bigger, n - len(same) - len(less))
+
+def med_of_meds(lst, n):
+    '''Return the nth smallest number in lst using median of medians algo.'''
+    
+    
+    if not lst or len(lst) < n:
+        raise IndexError("lst doesn't have n elements")
+    if len(lst) <= 5:
+        return sorted(lst)[n]
+    
+    lsts = [lst[i:i+5] for i in range(0, len(lst), 5)]
+    medians = [med_of_meds(_lst, len(_lst) / 2) for _lst in lsts]
+    piv = med_of_meds(medians, len(medians) / 2)
+
+    less = [x for x in lst if x < piv]
+    same = [x for x in lst if x == piv]
+    bigger = [x for x in lst if x > piv]
+    
+    if n < len(less):
+        return med_of_meds(less, n)
+    elif n < len(less) + len(same):
+        return piv
+    else:
+        return med_of_meds(bigger, n - len(same) - len(less))
