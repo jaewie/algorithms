@@ -1,3 +1,6 @@
+from Queue import Queue
+
+
 class Node(object):
     def __init__(self, d):
         self.data = d
@@ -17,15 +20,16 @@ def in_order(root):
 def bfs(root):
     '''Return a BFS of node iteratively'''
     
-    queue = [root]
+    queue = Queue()
+    queue.put(root)
     res = []
-    while queue:
-        node = queue.pop(0)
+    while not queue.empty():
+        node = queue.get()
         res.append(node.data)
         if node.left:
-            queue.append(node.left)
+            queue.put(node.left)
         if node.right:
-            queue.append(node.right)
+            queue.put(node.right)
     return res
 
 def dfs(root):
@@ -46,15 +50,13 @@ def is_BST(root):
     '''Return whether root is a binary search tree.'''
 
     lst = in_order(root)
-    
-    for i in range(len(lst) - 1):
-        if lst[i] > lst[i+1]:
-            return False
-    return True
+    return all(lst[i] < lst[i + 1] for i in range(len(lst)))
 
-def rec_DFS(node, lst=[]):
+def rec_DFS(node, lst=None):
     '''Return a DFS of node recursively'''
-
+    if lst is None:
+        lst = []
+    
     if node:
         lst.append(node.data)
         if node.left:
@@ -62,21 +64,6 @@ def rec_DFS(node, lst=[]):
         if node.right:
             rec_DFS(node.right)
     return lst
-
-def in_order_predc(node):
-    ''' Return the next biggest node.'''
-
-    if not node:
-        return None
-    
-    if node.right:
-        while node.left:
-            node = node.left
-        return node
-    
-    while node.parent:
-        node = node.parent
-    return node
 
 def insert_into_BST(root, node):
     ''' Insert node into BST root. It's assumed all values are distinct'''
@@ -113,8 +100,3 @@ def height(node):
     if node:
         return 1 + max(height(node.left), height(node.right))
     return 0
-
-if __name__ == "__main__":
-    a = Node(5)
-
-                
