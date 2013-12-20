@@ -1,54 +1,30 @@
-def rem_duplicates(lst):
-    '''Remove any duplicates in lst.'''
+PRIME_MOD = 257
+PRIME_BASE = 1000000007
 
-    hit = [False for i in range(256)]      
-    hit[ord(lst[0])] = True
-    tail = 1
-    
-    for i in range(1, len(lst)):
-        val = ord(lst[i])
-        if not hit[val]:
-            lst[tail] = lst[i]
-            tail += 1
-            hit[val] = True
-    
-    if tail != len(lst):
-        lst[tail] = '\0'
-    return lst
-
-def is_anagrams(a, b):
-    '''Return whether string a and b are anagrams.'''
-
-    a_count = {}
-    b_count = {}
-    
-    for char in a:
-        a_count[char] = a_count.get(char, 0) + 1
+def substr(s, sub):
+    sub_hash = roll_hash(sub)
+    check_hash = None
+    for i in range(len(s) - len(sub) + 1):
+        check = s[i:i + len(sub)]
+        prev_char = s[i - 1] if i > 0 else None
+        check_hash = roll_hash(check, prev_char, check_hash)
         
-    for char in b:
-        b_count[char] = b_count.get(char, 0) + 1
-        
-    if len(a_count) != len(b_count):
-        return False
-    
-    for char in a_count:
-        b_num = b_count.get(char, None)
-        if a_count[char] != b_num:
-            return False
-    return True
-
-def first_non_repeated_char(string):
-    '''Return the first non repeated character in string.'''
-
-    d = {}
-    
-    for char in string:
-        if d.get(char):
-            d[char] = "Repeated"
-        else:
-            d[char] = "First"
-    
-    for char in string:
-        if d[char] == "First":
-            return char
+        if (roll_hash(check), check) == (sub_hash, sub):
+            return i
     return -1
+
+def roll_hash(s, prev_char=None, prev_hash=None, prime_mod=PRIME_MOD,
+              prime_base=PRIME_BASE):
+    if prev_hash is not None:
+        return shift_hash_right(s, prev_hash, prev_char)
+
+    k = len(s) - 1
+    val = sum(ord(char) * prime_mod ** (k - i) for i, char in enumerate(s))
+    return val % prime_base
+
+def shift_hash_right(s, prev_hash, prev_char, prime_mod=PRIME_MOD,
+              prime_base=PRIME_BASE):
+    prev_hash -= ord(prev_char) * prime_mod ** (len(s) - 1)
+    prev_hash *= prime_mod
+    prev_hash += ord(s[-1])
+    return prev_hash % prime_base
