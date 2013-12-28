@@ -4,7 +4,7 @@ from random import randint
 def sqroot(target, epsilon=0.0001):
     '''Return the squareroot of target.'''
     
-    # Babylonian algorithm
+    # Newton's algorithm
     guess = 1.0
     
     while abs(guess ** 2 - target) > epsilon:
