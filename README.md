@@ -14,7 +14,7 @@ These are some algorithms and data structures I implemented for my own learning/
 - Floyd's cycle-finding algorithm
 
 ### Numeric
-- Babylonian algorithm
+- Newton's method
 - Fermat's primality test
 - Euclid's algorithm
 - Fast exponentiation
