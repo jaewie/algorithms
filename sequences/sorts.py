@@ -10,9 +10,9 @@ def quick_sort(lst):
     
     ind = random.randint(0, len(lst) - 1)
     pivot = lst[ind]
-    less = [x for x in lst if x < pivot]
-    same = [x for x in lst if x == pivot]
-    bigger = [x for x in lst if x > pivot]
+    less = [left for x in lst if x < pivot]
+    same = [left for x in lst if x == pivot]
+    bigger = [left for x in lst if x > pivot]
 
     return quick_sort(less) + same + quick_sort(bigger)
 
@@ -28,25 +28,15 @@ def merge_sort(lst):
 
 def _merge(left_lst, right_lst):
     '''Return the merge of sorted lists left_lst and right_lst'''
-    
-    lst = []
-    i, j = 0, 0
-    
-    while i < len(left_lst) and j < len(right_lst):
-        if left_lst[i] < right_lst[j]:
-            lst.append(left_lst[i])
-            i += 1
-        elif left_lst[i] > right_lst[j]:
-            lst.append(right_lst[j])
-            j += 1
-        else:
-            lst.append(left_lst[i])
-            lst.append(right_lst[j])
-            i += 1
-            j += 1
-    lst.extend(left_lst[i:])
-    lst.extend(right_lst[j:])
-    return lst
+
+    if not left_lst or not right_lst:
+      return max(left_lst, right_lst)
+
+    left, right = left_lst[0], right_lst[0]
+    if left <= right:
+      return [left] + _merge(left_lst[1:], right_lst)
+    else:
+      return [right] + _merge(left_lst, right_lst[1:])
 
 def insertion_sort(lst):
     '''Insertion sort is worst case O(n^2) and best case O(n)'''
