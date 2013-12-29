@@ -10,9 +10,9 @@ def quick_sort(lst):
     
     ind = random.randint(0, len(lst) - 1)
     pivot = lst[ind]
-    less = [left for x in lst if x < pivot]
-    same = [left for x in lst if x == pivot]
-    bigger = [left for x in lst if x > pivot]
+    less = [x for x in lst if x < pivot]
+    same = [x for x in lst if x == pivot]
+    bigger = [x for x in lst if x > pivot]
 
     return quick_sort(less) + same + quick_sort(bigger)
 
