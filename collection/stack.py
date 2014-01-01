@@ -17,5 +17,7 @@ class Stack(object):
         return not self.stack
     
     def peek(self):
-        if self.stack:
-            return self.stack[-1]
+      if len(self) <= 0:
+          raise IndexError("Peek from empty stack")
+
+      return self.stack[-1]
