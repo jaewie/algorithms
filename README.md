@@ -6,6 +6,7 @@ These are some algorithms and data structures I implemented for my own learning/
 ### Collection
 - Stack
 - Queue
+- Priority Queue
 
 ### Graphs
 - Kruskal's algorithm
