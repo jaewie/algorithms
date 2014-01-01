@@ -21,7 +21,7 @@ class Queue(object):
             
     def dequeue(self):
         if not self._head:
-            raise Exception("Dequeue from empty queue")
+            raise IndexError("Dequeue from empty queue")
         
         node = self.peek()
         

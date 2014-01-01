@@ -7,7 +7,7 @@ class Stack(object):
             
     def pop(self):
         if len(self) <= 0:
-            raise Exception("Pop from empty stack")
+            raise IndexError("Pop from empty stack")
         return self.stack.pop()
     
     def __len__(self):
