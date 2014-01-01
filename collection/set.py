@@ -7,10 +7,7 @@ class Set(object):
     
     def remove(self, item):
         del self._set[item]
-    
-    def union(self, set):
-        return [item for item in set if item in self._set]
-    
+
     def merge(self, set):
         for key in set:
             self._set[key] = True
