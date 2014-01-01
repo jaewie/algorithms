@@ -3,6 +3,10 @@ Algorithms and Data Structures
 
 These are some algorithms and data structures I implemented for my own learning/reference purposes
 
+### Collection
+- Stack
+- Queue
+
 ### Graphs
 - Kruskal's algorithm
 - Prim's algorithm
