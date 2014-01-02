@@ -24,6 +24,11 @@ These are some algorithms and data structures I implemented for my own learning/
 - Fermat's primality test
 - Euclid's algorithm
 - Fast exponentiation
+- Sieve's primes
+
+### Combinatorics
+- Fisher-Yate's algorithm
+- Reservoir sampling
 
 ### Sequences
 - Kadane's algorithm
