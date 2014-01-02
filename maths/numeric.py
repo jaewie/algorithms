@@ -39,9 +39,10 @@ def exp(a, n):
   is_even = lambda num: num % 2 == 0
   return exp(a * a, n / 2) if is_even(n) else a * exp(a * a, n / 2)
 
-def sieve_prime(n):
+def generate_primes(n):
   '''Return the list of prime numbers <= n'''
 
+  # Sieve's primes
   primes = [i for i in range(2, n + 1)]
   ind = 0
   
