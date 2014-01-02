@@ -38,3 +38,16 @@ def exp(a, n):
   # Exponentiation by squaring
   is_even = lambda num: num % 2 == 0
   return exp(a * a, n / 2) if is_even(n) else a * exp(a * a, n / 2)
+
+def sieve_prime(n):
+  '''Return the list of prime numbers <= n'''
+
+  primes = [i for i in range(2, n + 1)]
+  ind = 0
+  
+  while ind != len(primes) - 1:
+    cur = primes[ind]
+    print cur
+    primes = [num for num in primes if num == cur or num % cur != 0]
+    ind += 1
+  return primes
