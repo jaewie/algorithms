@@ -47,7 +47,6 @@ def sieve_prime(n):
   
   while ind != len(primes) - 1:
     cur = primes[ind]
-    print cur
     primes = [num for num in primes if num == cur or num % cur != 0]
     ind += 1
   return primes
