@@ -143,36 +143,38 @@ def bubble_down(lst, i):
             break
 
 def bucket_sort(lst):
- queue = to_queue(lst)
- return _bucket_sort(queue)
+    '''Return lst sorted using bubble sort'''
+
+    queue = to_queue(lst)
+    return _bucket_sort(queue)
 
 def _bucket_sort(queue, num_buckets=10):
-  lst = to_list(queue)
-  if is_sorted(lst):
-    return lst
-  
-  sm, big = min(lst), max(lst)
-  step = max((big - sm) / num_buckets + 1, 1)
-  queues = [Queue() for _ in range(num_buckets)]
-  for num in lst:
-    for i, s in enumerate(range(sm + step, big + step + 1, step)):
-      if num < s:
-        queues[i].put(num)
-        break 
-  
-  return reduce(list.__add__, map(_bucket_sort, queues), [])
+    lst = to_list(queue)
+    if is_sorted(lst):
+      return lst
+    
+    sm, big = min(lst), max(lst)
+    step = max((big - sm) / num_buckets + 1, 1)
+    queues = [Queue() for _ in range(num_buckets)]
+    for num in lst:
+      for i, s in enumerate(range(sm + step, big + step + 1, step)):
+        if num < s:
+          queues[i].put(num)
+          break 
+    
+    return reduce(list.__add__, map(_bucket_sort, queues), [])
 
 def to_queue(lst):
-  queue = Queue()
-  for num in lst:
-    queue.put(num)
-  return queue
+    queue = Queue()
+    for num in lst:
+      queue.put(num)
+    return queue
 
 def to_list(queue):
-  lst = []
-  while not queue.empty():
-    lst.append(queue.get())
-  return lst
+    lst = []
+    while not queue.empty():
+      lst.append(queue.get())
+    return lst
 
 def is_sorted(lst):
-  return len(lst) <= 1 or all(lst[i] <= lst[i + 1] for i in range(len(lst) - 1))
+    return len(lst) <= 1 or all(lst[i] <= lst[i + 1] for i in range(len(lst) - 1))
