@@ -1,3 +1,6 @@
+from Queue import Queue
+
+
 def bucket_sort(lst):
     '''Return lst sorted using bubble sort'''
 
@@ -38,7 +41,7 @@ def is_sorted(lst):
 def radix_sort(lst):
     
     digits = len(str(max(lst)))
-    buckets = [Queue.Queue() for _ in range(10)]
+    buckets = [Queue() for _ in range(10)]
     for i in range(digits):
         for num in lst:
             digit = num / (10 ** i) % 10
@@ -52,3 +55,6 @@ def empty_buckets(buckets):
         while not bucket.empty():
             lst.append(bucket.get())
     return lst
+
+print radix_sort([1,5,2,3,4,5,6])
+print bucket_sort([1,2,5,2,3,4,7,7])
