@@ -70,19 +70,6 @@ def selection_sort(lst):
         lst[i], lst[m] = lst[m], lst[i]
     return lst
 
-def binary_search(lst, target):
-    ''' Binary search is worst case O(log n)'''
-    low, high = 0, len(lst) - 1
-    while low <= high:
-        mid = (high + low) / 2
-        if lst[mid] < target:
-            low = mid + 1
-        elif lst[mid] > target:
-            high = mid - 1
-        else:
-            return mid
-    return -1
-
 def heap_sort(lst):
     ''' Heap sort is always O(n log n).'''
 

@@ -75,3 +75,16 @@ def med_of_meds(lst, n):
         return piv
     else:
         return med_of_meds(bigger, n - len(same) - len(less))
+
+def binary_search(lst, target):
+    ''' Binary search is worst case O(log n)'''
+    low, high = 0, len(lst) - 1
+    while low <= high:
+        mid = (high + low) / 2
+        if lst[mid] < target:
+            low = mid + 1
+        elif lst[mid] > target:
+            high = mid - 1
+        else:
+            return mid
+    return -1
