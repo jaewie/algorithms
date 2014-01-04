@@ -35,12 +35,17 @@ These are some algorithms and data structures I implemented for my own learning/
 - Quickselect
 - Median of medians
 - Dutch national flag
+
+### Sorts
 - Quick sort
 - Merge sort
 - Insertion sort
 - Selection sort
 - Radix sort
 - Heap sort
+- Bubble sort
+- Counting sort
+- Bucket sort
 
 ### Strings
 - Rabin-Karp algorithm
