@@ -56,5 +56,16 @@ def empty_buckets(buckets):
             lst.append(bucket.get())
     return lst
 
-print radix_sort([1,5,2,3,4,5,6])
-print bucket_sort([1,2,5,2,3,4,7,7])
+def count_sort(lst):
+  counts = {i: 0 for i in range(min(lst), max(lst) + 1)}
+  for num in lst: counts[num] += 1
+  return reduce(list.__add__, [[k] * v for k, v in counts.items()])
+
+
+
+
+
+
+
+
+
