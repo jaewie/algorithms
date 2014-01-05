@@ -14,14 +14,14 @@ def _bucket_sort(queue, num_buckets=10):
     
     sm, big = min(lst), max(lst)
     step = (big - sm) / num_buckets + 1
-    queues = [Queue() for _ in range(num_buckets)]
+    buckets = [Queue() for _ in range(num_buckets)]
     for num in lst:
       for i, s in enumerate(range(sm + step, big + step + 1, step)):
         if num < s:
-          queues[i].put(num)
+          buckets[i].put(num)
           break 
     
-    return reduce(list.__add__, map(_bucket_sort, queues), [])
+    return reduce(list.__add__, map(_bucket_sort, buckets), [])
 
 def to_queue(lst):
     queue = Queue()
