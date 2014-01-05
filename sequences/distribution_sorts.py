@@ -2,7 +2,7 @@ from Queue import Queue
 
 
 def bucket_sort(lst):
-    '''Return lst sorted using bubble sort'''
+    '''Return lst sorted using bucket sort'''
 
     queue = to_queue(lst)
     return _bucket_sort(queue)
@@ -60,12 +60,4 @@ def count_sort(lst):
   counts = {i: 0 for i in range(min(lst), max(lst) + 1)}
   for num in lst: counts[num] += 1
   return reduce(list.__add__, [[k] * v for k, v in counts.items()])
-
-
-
-
-
-
-
-
 
