@@ -1,4 +1,5 @@
 from Queue import Queue
+from collections import Counter
 
 
 def bucket_sort(lst):
@@ -57,7 +58,5 @@ def empty_buckets(buckets):
     return lst
 
 def count_sort(lst):
-  counts = {i: 0 for i in range(min(lst), max(lst) + 1)}
-  for num in lst: counts[num] += 1
-  return reduce(list.__add__, [[k] * v for k, v in counts.items()])
-
+  counter = Counter(lst)
+  return reduce(list.__add__, [[num] * counter.get(num, 0) for num in range(min(lst), max(lst)+1)])
