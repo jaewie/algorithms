@@ -56,8 +56,7 @@ def bubble_sort(lst):
 
 def selection_sort(lst):
     
-    for i in range(len(lst)):
-        m = i
+    for i, m in enumerate(range(len(lst))):
         for j in range(i, len(lst)):
             m = min(m, j, lambda x: lst[x])
         lst[i], lst[m] = lst[m], lst[i]
@@ -84,8 +83,8 @@ def bubble_down(lst, i):
     '''Bubble down element at index i in lst'''
     
     while True:
-        lc = 2*i + 1
-        rc = 2*i + 2
+        lc = 2 * i + 1
+        rc = 2 * i + 2
         
         if lc >= len(lst) and rc >= len(lst):
             break

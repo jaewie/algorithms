@@ -14,11 +14,11 @@ def _bucket_sort(queue, num_buckets=10):
       return lst
     
     sm, big = min(lst), max(lst)
-    step = (big - sm) / num_buckets + 1
+    size = (big - sm) / num_buckets + 1
     buckets = [Queue() for _ in range(num_buckets)]
     for num in lst:
-      for i, s in enumerate(range(sm + step, big + step + 1, step)):
-        if num < s:
+      for i, step in enumerate(range(sm + size, big + size + 1, size)):
+        if num < step:
           buckets[i].put(num)
           break 
     
@@ -59,4 +59,4 @@ def empty_buckets(buckets):
 
 def count_sort(lst):
   counter = Counter(lst)
-  return reduce(list.__add__, [[num] * counter.get(num, 0) for num in range(min(lst), max(lst)+1)])
+  return reduce(list.__add__, [[num] * counter.get(num, 0) for num in range(min(lst), max(lst) + 1)])
