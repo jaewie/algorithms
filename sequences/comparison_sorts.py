@@ -3,7 +3,7 @@ import Queue
 
 
 def quick_sort(lst):
-    '''Randomized quicksort. Avg: O(n log n). Worst: O(n^2)'''
+    '''Randomized quicksort.'''
     
     if len(lst) <= 1:
         return lst
@@ -18,7 +18,6 @@ def quick_sort(lst):
 
 
 def merge_sort(lst):
-    '''Merge sort is always O(n log n)'''
     
     if len(lst) <= 1:
         return lst
@@ -30,7 +29,7 @@ def _merge(left_lst, right_lst):
     '''Return the merge of sorted lists left_lst and right_lst'''
 
     if not left_lst or not right_lst:
-      return max(left_lst, right_lst)
+      return left_lst or right_lst
 
     left, right = left_lst[0], right_lst[0]
     if left <= right:
@@ -39,39 +38,32 @@ def _merge(left_lst, right_lst):
       return [right] + _merge(left_lst, right_lst[1:])
 
 def insertion_sort(lst):
-    '''Insertion sort is worst case O(n^2) and best case O(n)'''
     
     for i in range(len(lst)):
         j = i
-        temp = lst[i]
-        while j > 0 and lst[j-1] > temp:
-            lst [j] = lst[j-1]
+        while j > 0 and lst[j - 1] > lst[j]:
+            lst[j], lst[j - 1] = lst[j - 1], lst[j]
             j -= 1
-        lst[j] = temp
     return lst
 
 def bubble_sort(lst):
-    '''Bubble sort is always O(n^2)'''
     
     for i in range(len(lst)):
         for j in range(len(lst) - 1):
-            if lst[j] > lst[j+1]:
-                lst[j], lst[j+1] = lst[j+1], lst[j]
+            if lst[j] > lst[j + 1]:
+                lst[j], lst[j + 1] = lst[j + 1], lst[j]
     return lst
 
 def selection_sort(lst):
-    ''' Selection sort is always O(n^2)'''
     
     for i in range(len(lst)):
         m = i
         for j in range(i, len(lst)):
-            if lst[j] < lst[m]:
-                m = j
+            m = min(m, j, lambda x: lst[x])
         lst[i], lst[m] = lst[m], lst[i]
     return lst
 
 def heap_sort(lst):
-    ''' Heap sort is always O(n log n).'''
 
     make_heap(lst)
     res = []
@@ -110,5 +102,3 @@ def bubble_down(lst, i):
             i = child
         else:
             break
-
-
