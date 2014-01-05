@@ -13,7 +13,7 @@ def _bucket_sort(queue, num_buckets=10):
       return lst
     
     sm, big = min(lst), max(lst)
-    step = max((big - sm) / num_buckets + 1, 1)
+    step = (big - sm) / num_buckets + 1
     queues = [Queue() for _ in range(num_buckets)]
     for num in lst:
       for i, s in enumerate(range(sm + step, big + step + 1, step)):
