@@ -18,7 +18,6 @@ def quick_sort(lst):
 
 
 def merge_sort(lst):
-    
     if len(lst) <= 1:
         return lst
     left = merge_sort(lst[:len(lst) / 2])
@@ -38,16 +37,13 @@ def _merge(left_lst, right_lst):
       return [right] + _merge(left_lst, right_lst[1:])
 
 def insertion_sort(lst):
-    
     for i in range(len(lst)):
-        j = i
-        while j > 0 and lst[j - 1] > lst[j]:
-            lst[j], lst[j - 1] = lst[j - 1], lst[j]
-            j -= 1
+        while i > 0 and lst[i - 1] > lst[i]:
+            lst[i], lst[i - 1] = lst[i - 1], lst[i]
+            i -= 1
     return lst
 
 def bubble_sort(lst):
-    
     for i in range(len(lst)):
         for j in range(len(lst) - 1):
             if lst[j] > lst[j + 1]:
@@ -55,7 +51,6 @@ def bubble_sort(lst):
     return lst
 
 def selection_sort(lst):
-    
     for i, m in enumerate(range(len(lst))):
         for j in range(i, len(lst)):
             m = min(m, j, lambda x: lst[x])
@@ -63,7 +58,6 @@ def selection_sort(lst):
     return lst
 
 def heap_sort(lst):
-
     make_heap(lst)
     res = []
     while lst:
