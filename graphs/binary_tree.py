@@ -1,4 +1,5 @@
 from Queue import Queue
+import sys
 
 
 class Node(object):
@@ -54,16 +55,21 @@ def is_BST(root):
 
 def rec_DFS(node, lst=None):
     '''Return a DFS of node recursively'''
-    if lst is None:
-        lst = []
-    
-    if node:
-        lst.append(node.data)
-        if node.left:
-            rec_DFS(node.left)
-        if node.right:
-            rec_DFS(node.right)
-    return lst
+    return depth_lim_search(node, sys.maxint)
+
+def depth_lim_search(node, lim, lst=None):
+  if lst is None:
+    lst = []
+  if node and lim:
+    lst.append(node.data)
+    if node.left:
+      depth_lim_search(node.left, lim - 1, lst)
+    if node.right:
+      depth_lim_search(node.right, lim - 1, lst)
+  return lst
+
+def iterative_deepining_dfs(node, depth):
+  return reduce(list.__add__, [depth_lim_search(node, i) for i in range(depth + 1)])
 
 def insert_into_BST(root, node):
     ''' Insert node into BST root. It's assumed all values are distinct'''
