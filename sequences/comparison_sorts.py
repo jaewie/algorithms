@@ -95,3 +95,12 @@ def bubble_down(lst, i):
             i = child
         else:
             break
+
+def stack_sort(lst):
+  res = []
+  while lst:
+    num = lst.pop()
+    while res and res[-1] > num:
+      lst.append(res.pop())
+    res.append(num)
+  return res
