@@ -45,11 +45,8 @@ def does_create_cycle(adj_list, edge):
 def is_connected(adj_list, node):
     ''' Return whether there is an edge in adj_list connected to node.'''
 
-    for key in adj_list:
-        if node in adj_list[key]:
-            return True
-    return False
-        
+    return any(node in adj_list[key] for key in adj_list)
+
 def get_edge_num(adj_list):
     ''' Return the total number of edges in the graph (adj_list).'''
 
@@ -125,7 +122,7 @@ def get_valid_neighbors(cur_node, end, coords, visited):
     is_wall = cur_node["is_wall"]
     valid_neighbors = []
     
-    to_check = [(x+1, y), (x-1, y), (x, y+1), (x, y-1)]
+    to_check = [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
     
     for c in to_check:
         if is_in_board_and_not_visited(c, coords, visited):
