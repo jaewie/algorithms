@@ -51,3 +51,16 @@ def generate_primes(n):
     primes = [num for num in primes if num == cur or num % cur != 0]
     ind += 1
   return primes
+
+def get_pi():
+  '''Return PI.'''
+  n = 200
+
+  # Bailey-Borwein-Plouffe formula
+  p = lambda k: 1.0 / (16 ** k) * (4.0 / (8 * k + 1) - 2.0 / (8 * k + 4) - 1.0 / (8 * k + 5) - 1.0 / (8 * k + 6))
+
+  return sum(p(i) for i in range(n))
+
+print get_pi()
+
+
