@@ -60,7 +60,3 @@ def get_pi():
   p = lambda k: 1.0 / (16 ** k) * (4.0 / (8 * k + 1) - 2.0 / (8 * k + 4) - 1.0 / (8 * k + 5) - 1.0 / (8 * k + 6))
 
   return sum(p(i) for i in range(n))
-
-print get_pi()
-
-
