@@ -20,3 +20,12 @@ def sample(lst, k):
       swap = randint(0, k - 1)
       reservoir[swap] = num
   return reservoir
+
+def fair_coin(biased_coin):
+  '''Return 0, 1 with 50% chance each'''
+
+  # Algorithm by Von Neuman
+  first_coin, second_coin = 0, 0
+  while first_cion == second_coin:
+    first_coin, second_coin = biased_coin(), biased_coin()
+  return first_coin
