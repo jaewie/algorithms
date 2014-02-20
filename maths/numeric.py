@@ -1,5 +1,4 @@
-from random import randint
-from random import random
+from random import randint, random
 from math import sqrt
 
 
