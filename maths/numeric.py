@@ -1,4 +1,6 @@
 from random import randint
+from random import random
+from math import sqrt
 
 
 def sqroot(target, epsilon=0.0001):
@@ -54,9 +56,17 @@ def generate_primes(n):
 
 def get_pi():
   '''Return PI.'''
-  n = 200
 
+  n = 200
   # Bailey-Borwein-Plouffe formula
   p = lambda k: 1.0 / (16 ** k) * (4.0 / (8 * k + 1) - 2.0 / (8 * k + 4) - 1.0 / (8 * k + 5) - 1.0 / (8 * k + 6))
 
   return sum(p(i) for i in range(n))
+
+def get_pi(num_pts=100000):
+
+  # Monte Carlo method
+  dist_from_origin = lambda x, y: sqrt(x ** 2 + y ** 2)
+  all_pts = [(random(), random()) for _ in range(num_pts)]
+  pts_inside_circle = [(x, y) for x, y in all_pts if dist_from_origin(x, y) <= 1]
+  return 4.0 * len(pts_inside_circle) / len(all_pts)
