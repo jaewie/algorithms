@@ -21,7 +21,6 @@ class Deque(object):
       node.prev = self._tail
       self._tail = node
 
-    print "Tail is now " + str(self._tail.val)
     self._count += 1
  
   def appendleft(self, val):
