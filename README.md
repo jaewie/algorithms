@@ -1,7 +1,7 @@
 Algorithms and Data Structures
 ==========
 
-These are some algorithms and data structures I implemented for my own learning/reference purposes
+These are some algorithms and data structures I implemented for my own reference
 
 ### Collection
 - Stack
@@ -15,6 +15,8 @@ These are some algorithms and data structures I implemented for my own learning/
 - A*
 - BFS and DFS
 - Inorder traversal
+- Depth limited search
+- Deepening depth first search
 
 ### Linked Lists
 - Floyd's cycle-finding algorithm
@@ -46,6 +48,10 @@ These are some algorithms and data structures I implemented for my own learning/
 - Bubble sort
 - Counting sort
 - Bucket sort
+- Stack sort
 
 ### Strings
 - Rabin-Karp algorithm
+
+### Simulation
+- Monte Carlo Method (for finding PI)
