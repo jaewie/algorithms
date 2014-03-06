@@ -6,9 +6,10 @@ These are some algorithms and data structures I implemented for my own reference
 ### Collection
 - Stack
 - Queue
-- Priority Queue
+- Priority queue
 - Set
 - Deque
+- Dynamic array
 
 ### Graphs
 - Kruskal's algorithm
