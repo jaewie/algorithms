@@ -8,6 +8,7 @@ These are some algorithms and data structures I implemented for my own reference
 - Queue
 - Priority Queue
 - Set
+- Deque
 
 ### Graphs
 - Kruskal's algorithm
