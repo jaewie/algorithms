@@ -3,6 +3,7 @@ from itertools import cycle, starmap, izip
 
 
 def vigenere_cipher(msg, key):
+  msg = msg.upper()
   letter_to_val = {char: val for val, char in enumerate(uppercase)}
   val_to_letter = {val: char for val, char in enumerate(uppercase)}
 
