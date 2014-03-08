@@ -1,4 +1,3 @@
-from tests import test_deque
 import os
 import sys
 import unittest
