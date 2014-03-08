@@ -18,6 +18,8 @@ def get_test_suite(test_modules):
   return suite
 
 if __name__ == "__main__":
-  test_modules = ['tests.test_deque']
+  test_modules = ['tests.collection.test_deque',
+                  'tests.crypto.test_caesar_cipher',
+                  'tests.crypto.test_one_time_pad']
   suite = get_test_suite(test_modules)
   unittest.TextTestRunner().run(suite)

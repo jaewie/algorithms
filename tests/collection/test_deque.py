@@ -1,5 +1,4 @@
 import unittest
-import sys, os
 from collection.deque import Deque
 
 class TestDeque(unittest.TestCase):
@@ -64,6 +63,3 @@ class TestDeque(unittest.TestCase):
       self.assertEquals(1, self.deque.count)
       self.deque.append(1)
       self.assertEquals(2, self.deque.count)
-
-if __name__ == '__main__':
-    unittest.main()

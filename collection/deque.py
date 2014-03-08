@@ -26,7 +26,7 @@ class Deque(object):
   def appendleft(self, val):
     node = self.Node(val)
 
-    if not self._head:
+    if self._head is None:
       self._head = self._tail = node
     else:
       self._head.prev = node
@@ -35,23 +35,30 @@ class Deque(object):
       self._count += 1
 
   def pop(self):
-    if not self._tail:
+    if self._tail is None:
       raise IndexError("pop from empty deque")
 
     item = self._tail
-    self._tail = self._tail.prev
-    self._tail.next = None
+
+    if self._tail is self._head:
+      self._tail = self._head = None
+    else:
+      self._tail = self._tail.prev
+      self._tail.next = None
     self._count -= 1
     return item
 
 
   def popleft(self):
-    if not self._head:
+    if self._head is None:
       raise IndexError("popleft from empty deque")
 
     item = self._head
-    self._head = self._head.next
-    self._head.prev = None
+    if self._head is self._tail:
+      self._tail = self._head = None
+    else:
+      self._head = self._head.next
+
     self._count -= 1
     return item
 

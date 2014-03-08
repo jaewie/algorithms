@@ -56,7 +56,7 @@ def med_of_meds(lst, n):
     '''Return the nth smallest number in lst using median of medians algo.'''
     
     
-    if not lst or len(lst) < n:
+    if not lst or len(lst) <= n:
         raise IndexError("lst doesn't have n elements")
     if len(lst) <= 5:
         return sorted(lst)[n]
