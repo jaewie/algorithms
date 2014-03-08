@@ -34,6 +34,7 @@ These are some algorithms and data structures I implemented for my own reference
 
 - Vigenere cipher
 - Caesar cipher
+- One time pad
 
 ### Combinatorics
 - Fisher-Yate's algorithm
