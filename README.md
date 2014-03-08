@@ -30,6 +30,10 @@ These are some algorithms and data structures I implemented for my own reference
 - Fast exponentiation
 - Sieve's primes
 
+### Cryptographic
+
+- Vigenere Cipher
+
 ### Combinatorics
 - Fisher-Yate's algorithm
 - Reservoir sampling
