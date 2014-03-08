@@ -1,8 +1,6 @@
 Algorithms and Data Structures
 ==========
 
-These are some algorithms and data structures I implemented for my own reference
-
 ### Collection
 - Stack
 - Queue
