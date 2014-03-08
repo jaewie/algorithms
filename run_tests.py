@@ -20,6 +20,7 @@ def get_test_suite(test_modules):
 if __name__ == "__main__":
   test_modules = ['tests.collection.test_deque',
                   'tests.crypto.test_caesar_cipher',
-                  'tests.crypto.test_one_time_pad']
+                  'tests.crypto.test_one_time_pad',
+                  'tests.crypto.test_vigenere_cipher']
   suite = get_test_suite(test_modules)
   unittest.TextTestRunner().run(suite)
