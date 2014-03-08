@@ -32,7 +32,8 @@ These are some algorithms and data structures I implemented for my own reference
 
 ### Cryptographic
 
-- Vigenere Cipher
+- Vigenere cipher
+- Caesar cipher
 
 ### Combinatorics
 - Fisher-Yate's algorithm
