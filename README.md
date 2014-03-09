@@ -10,6 +10,7 @@ Algorithms and Data Structures
 - Dynamic array
 
 ### Graphs
+- Trie
 - Kruskal's algorithm
 - Prim's algorithm
 - A*
