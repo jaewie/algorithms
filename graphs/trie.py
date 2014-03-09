@@ -30,6 +30,3 @@ class Trie(object):
       res.extend([char + s for s in child_res])
     return res
 
-a = Trie()
-a.insert("hello")
-print a
