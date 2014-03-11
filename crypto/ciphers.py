@@ -1,3 +1,6 @@
+from crypto import shift_char
+from string import lowercase
+from random import randint
 from string import lowercase
 from itertools import cycle, starmap, izip
 
@@ -12,3 +15,12 @@ def vigenere_cipher(msg, key):
   key = cycle(key) if len(msg) > len(key) else key
 
   return ''.join(c for c in starmap(get_cipher_char, izip(msg, key)))
+
+def one_time_pad(msg, pad=None):
+  if pad is None:
+    pad = (randint(0, len(lowercase) - 1) for _ in range(len(msg)))
+
+  return ''.join(shift_char(char, shift) for char, shift in izip(msg, pad))
+
+def caesar_cipher(text, shift):
+  return ''.join(shift_char(c, shift) for c in text)
