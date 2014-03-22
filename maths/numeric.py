@@ -80,7 +80,3 @@ def mult(a, b):
     a += a
     b /= 2
   return res
-
-print mult(3, 5)
-print mult(3, -5)
-
