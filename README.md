@@ -35,6 +35,10 @@ Algorithms and Data Structures
 - Caesar cipher
 - One time pad
 
+### Interpreter
+
+- Shunting Yard algorithm
+
 ### Combinatorics
 - Fisher-Yate's algorithm
 - Reservoir sampling
