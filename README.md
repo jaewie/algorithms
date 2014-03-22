@@ -29,6 +29,7 @@ Algorithms and Data Structures
 - Euclid's algorithm
 - Fast exponentiation
 - Sieve's primes
+- Russian Peasant Multiplication algorithm
 
 ### Cryptographic
 

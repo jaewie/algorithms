@@ -69,3 +69,18 @@ def get_pi(num_pts=100000):
   all_pts = [(random(), random()) for _ in range(num_pts)]
   pts_inside_circle = [(x, y) for x, y in all_pts if dist_from_origin(x, y) <= 1]
   return 4.0 * len(pts_inside_circle) / len(all_pts)
+
+def mult(a, b):
+
+  # Russian Peasant Multiplication algorithm
+  res = 0
+  while b:
+    if b % 2 != 0:
+      res += a
+    a += a
+    b /= 2
+  return res
+
+print mult(3, 5)
+print mult(3, -5)
+
