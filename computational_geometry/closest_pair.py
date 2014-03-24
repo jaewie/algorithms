@@ -7,11 +7,16 @@ def closest_pair(pts):
   py = sorted(pts, key=itemgetter(1))
   return _closest_pair(px, py)
 
+
 def _closest_pair(px, py):
   if len(px) < 2:
     return (None, None)
-  if len(px) == 2:
+  elif len(px) == 2:
     return px
+  elif len(px) == 3:
+    pt0, pt1, pt2 = px
+    return min((pt0, pt1), (pt0, pt2), (pt1, pt2), key=distance)
+
 
   mid = len(px) / 2
   mid_line = px[mid][0]
