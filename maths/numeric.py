@@ -80,3 +80,25 @@ def mult(a, b):
     a += a
     b /= 2
   return res
+
+def mult(x, y):
+  
+  # Karatsuba algorithm
+  if x < 10 or y < 10:
+    return x * y
+
+  x_digs, y_digs = num_digits(x), num_digits(y)
+  n = max(x_digs, y_digs)
+  n = n if n % 2 == 0 else n - 1
+
+  a, b = x / (10 ** (n / 2)), x % (10 ** (n / 2)) 
+  c, d = y / (10 ** (n / 2)), y % (10 ** (n / 2)) 
+
+  ac = mult(a, c)
+  bd = mult(b, d)
+  ad_plus_bc = mult(a + b, c + d) - ac - bd
+
+  return 10 ** n * ac + 10 ** (n / 2) * (ad_plus_bc) + bd
+
+def num_digits(num):
+  return 1 + num_digits(num / 10) if num else 1

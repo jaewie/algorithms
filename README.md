@@ -14,7 +14,7 @@ Algorithms and Data Structures
 - Reservoir sampling
 
 ### Computational Geometry
-- Closest Pair algorithm
+- Closest pair algorithm
 
 ### Cryptographic
 - Vigenere cipher
@@ -45,6 +45,7 @@ Algorithms and Data Structures
 - Fast exponentiation
 - Sieve's primes
 - Russian Peasant Multiplication algorithm
+- Karatsuba algorithm
 
 ### Sequences
 - Kadane's algorithm
