@@ -9,6 +9,18 @@ Algorithms and Data Structures
 - Deque
 - Dynamic array
 
+### Combinatorics
+- Fisher-Yate's algorithm
+- Reservoir sampling
+
+### Computational Geometry
+- Closest Pair algorithm
+
+### Cryptographic
+- Vigenere cipher
+- Caesar cipher
+- One time pad
+
 ### Graphs
 - Trie
 - Binary Search Tree
@@ -19,6 +31,9 @@ Algorithms and Data Structures
 - Inorder traversal
 - Depth limited search
 - Deepening depth first search
+
+### Interpreter
+- Shunting Yard algorithm
 
 ### Linked Lists
 - Floyd's cycle-finding algorithm
@@ -31,25 +46,14 @@ Algorithms and Data Structures
 - Sieve's primes
 - Russian Peasant Multiplication algorithm
 
-### Cryptographic
-
-- Vigenere cipher
-- Caesar cipher
-- One time pad
-
-### Interpreter
-
-- Shunting Yard algorithm
-
-### Combinatorics
-- Fisher-Yate's algorithm
-- Reservoir sampling
-
 ### Sequences
 - Kadane's algorithm
 - Quickselect
 - Median of medians
 - Dutch national flag
+
+### Simulation
+- Monte Carlo Method (for finding PI)
 
 ### Sorts
 - Quick sort
@@ -65,6 +69,3 @@ Algorithms and Data Structures
 
 ### Strings
 - Rabin-Karp algorithm
-
-### Simulation
-- Monte Carlo Method (for finding PI)
