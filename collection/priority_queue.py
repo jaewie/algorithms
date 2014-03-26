@@ -42,7 +42,7 @@ class PriorityQueue(object):
             rc = 2 *i + 2    
 
     def bubble_up(self, i):
-        par = (i + 1) / 2
+        par = (i - 1) / 2
         
         while par >= 0:
             if self[par] <= self[i]:
