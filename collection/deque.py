@@ -32,7 +32,7 @@ class Deque(object):
       self._head.prev = node
       node.next = self._head
       self._head = node
-      self._count += 1
+    self._count += 1
 
   def pop(self):
     if self._tail is None:
