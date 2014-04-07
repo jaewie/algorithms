@@ -1,65 +1,69 @@
 class PriorityQueue(object):
-    def __init__(self):
-        self._heap = []
+  def __init__(self):
+    self.heap = []
 
-    def insert(self, val):
-        self._heap.append(val)
-        ind = len(self) - 1
-        self.bubble_up(ind)
-            
-    def get_min(self):
-        if self.is_empty():
-            raise IndexError("There are no elements in the priority queue")
-        return self._heap[0]
-    
-    def pop_min(self):
-        if self.is_empty():
-            raise IndexError("There are no elements in the priority queue")
-        self[0], self[-1] = self[-1], self[0]
-        min = self._heap.pop()
-        self.bubble_down(0)
-        return min
-    
-    def bubble_down(self, i):
-        lc = 2 *i + 1
-        rc = 2 *i + 2
+  def put(self, ele):
+    self.heap.append(ele)
+    self.bubble_up(len(self.heap) - 1)
 
-        while lc < len(self) or rc < len(self):
-            
-            if lc >= len(self) or rc >= len(self) :
-                child = min(lc, rc)
-            elif self[lc] < self[rc]:
-                child = lc
-            else:
-                child = rc
-            
-            if self[i] > self[child]:
-                self[child], self[i] = self[i], self[child]
-                i = child
-            else:
-                break
-            lc = 2 *i + 1
-            rc = 2 *i + 2    
+  def get(self):
+    if self.empty():
+      raise IndexError("get from empty heap")
+    self.heap[0], self.heap[-1] = self.heap[-1], self.heap[0]
+    num =  self.heap.pop()
+    self.bubble_down(0)
+    return num
 
-    def bubble_up(self, i):
-        par = (i - 1) / 2
-        
-        while par >= 0:
-            if self[par] <= self[i]:
-                break
-            
-            self[par], self[i] = self[i], self[par]
-            i = par            
-            par = (i - 1) / 2
+  def bubble_down(self, ind):
+    length = len(self.heap)
+    heap = self.heap
 
-    def is_empty(self):
-        return not self._heap
-    
-    def __len__(self):
-        return len(self._heap)
+    while True:
+      lc, rc = self.left_child(ind), self.right_child(ind)
+      if lc >= length and rc >= length:
+        break
+      elif lc >= length:
+        replace = rc
+      elif rc >= length:
+        replace = lc
+      else:
+        replace = min(lc, rc, key=lambda i: self.heap[i])
+      
+      if heap[replace] < heap[ind]:
+        heap[ind], heap[replace] = heap[replace], heap[ind]
+        ind = replace
+      else:
+        break
 
-    def __getitem__(self, i):
-        return self._heap[i]
+  def bubble_up(self, ind):
+    par = self.parent(ind)
+    heap = self.heap
 
-    def __setitem__(self, i, value):
-        self._heap[i] = value
+    while par >= 0:
+      if heap[ind] < heap[par]:
+        heap[ind], heap[par] = heap[par], heap[ind]
+        ind = par
+        par = self.parent(ind)
+      else:
+        break
+
+  def empty(self):
+    return not self.heap
+
+  def parent(self, ind):
+    return (ind - 1) / 2
+
+  def left_child(self, ind):
+    return (ind * 2) + 1
+
+  def right_child(self, ind):
+    return (ind * 2) + 2
+
+  def __len__(self):
+      return len(self.heap)
+
+  def __getitem__(self, i):
+      return self.heap[i]
+
+  def __setitem__(self, i, value):
+      self.heap[i] = value
