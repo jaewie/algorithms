@@ -102,3 +102,9 @@ def mult(x, y):
 
 def num_digits(num):
   return 1 + num_digits(num / 10) if num else 1
+
+def div(a, b):
+  # Super slow division by repeated substitution
+  if b == 0: raise ZeroDivisionError("Division by zero")
+  return 1 + div(a - b, b) if a >= b else 0
+
