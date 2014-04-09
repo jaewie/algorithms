@@ -16,7 +16,7 @@ class DisjointSet(object):
       self.parent = self.parent.find()
       return self.parent
 
-  def union(self, y):
+  def union(self, node):
     # Union by rank
     x = self.find()
     y = node.find()
