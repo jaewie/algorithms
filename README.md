@@ -15,6 +15,7 @@ Algorithms and Data Structures
 
 ### Computational Geometry
 - Closest pair algorithm
+- Sweep line algorithm
 
 ### Cryptographic
 - Vigenere cipher
