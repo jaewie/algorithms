@@ -26,4 +26,4 @@ def fair_coin(biased_coin):
   
   # Algorithm by John Von Neumann
   first, second = biased_coin(), biased_coin()
-  return first_coin if first == second else fair_coin(biased_coin)
+  return first if first == second else fair_coin(biased_coin)
