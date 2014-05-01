@@ -25,6 +25,7 @@ Algorithms and Data Structures
 ### Graphs
 - Trie
 - Binary Search Tree
+- AVL Tree
 - Disjoint set
 - Kruskal's algorithm
 - Prim's algorithm

@@ -1,31 +1,38 @@
-class Node(object):
-  def __init__(self, value):
-    self.val = value
-    self.left = None
-    self.right = None
+from node import Node
+
 
 class BST(object):
   def __init__(self):
-    self.root = None
+    self._root = None
 
-  def insert(self, value):
-    self.root = _insert(self.root, value)
+  def insert(self, ele):
+    node = ele if isinstance(ele, Node) else Node(ele)
+    self._root = _insert(self.root, node)
 
   def delete(self, val):
-    self.root = _delete(self.root, val)
+    self._root = _delete(self.root, val)
 
   def find(self, val):
-    return find(self.root, val)
+    return find(self._root, val)
+  
+  @property
+  def root(self):
+    while self._root and self._root.has_parent():
+      self._root = self._root.parent
+
+    return self._root
 
 
-def _insert(node, value):
+def _insert(node, insert_node):
   if not node:
-    return Node(value)
+    return insert_node
 
-  if value <= node.val:
-    node.left = _insert(node.left, value)
-  elif value > node.val:
-    node.right = _insert(node.right, value)
+  if insert_node.val <= node.val:
+    node.left = _insert(node.left, insert_node)
+    node.left.parent = node
+  elif insert_node.val > node.val:
+    node.right = _insert(node.right, insert_node)
+    node.right.parent = node
   return node
 
 def find(node, value):
@@ -39,16 +46,16 @@ def find(node, value):
   else:
     return node
 
-def _find_max(node):
+def find_max(node):
   if not node or not node.right:
     return node
-  return _find_max(node.right)
+  return find_max(node.right)
 
 def is_leaf(node):
   return node and not node.left and not node.right
 
 def _delete(node, val):
-  # assume that this returns the subtree with that node deleted if exists
+  # assume that this returns the tree with the node with value val deleted if exists
 
   if not node:
     return None
@@ -65,6 +72,6 @@ def _delete(node, val):
     elif is_leaf(node):
       return None
     else:
-      node.val = _find_max(node.left).val
+      node.val = find_max(node.left).val
       node.left = _delete(node.left, node.val)
   return node
