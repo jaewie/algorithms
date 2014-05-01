@@ -89,24 +89,3 @@ def _is_right_right_case(node, parent):
   bf = node.balance_factor
   par_bf = parent.balance_factor
   return par_bf == 2 and bf == 1
-
-
-if __name__ == '__main__':
-  a = AVL()
-  a.insert(3)
-  a.insert(2)
-  a.insert(1)
-  a.insert(10)
-  a.insert(6)
-
-  a.delete(6)
-  a.delete(1)
-  a.insert(20)
-  a.insert(30)
-
-  a.delete(10)
-  a.delete(3)
-
-  root = a.root
-
-
