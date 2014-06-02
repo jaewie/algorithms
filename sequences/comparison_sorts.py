@@ -66,6 +66,29 @@ def heap_sort(lst):
         bubble_down(lst, 0)
     return res
 
+def stack_sort(lst):
+  res = []
+  while lst:
+    num = lst.pop()
+    while res and res[-1] > num:
+      lst.append(res.pop())
+    res.append(num)
+  return res
+
+def comb_sort(lst):
+    gap = len(lst)
+    swapped = False
+    shrink = 1.3
+
+    while gap or swapped:
+        gap = int(gap / shrink)
+        swapped = False
+
+        for i in range(len(lst) - gap):
+            if lst[i] > lst[i + gap]:
+                lst[i], lst[i + gap] = lst[i + gap], lst[i]
+                swapped = True
+    return lst
 
 def make_heap(lst):
     '''Turn lst into a min-heap'''
@@ -95,12 +118,3 @@ def bubble_down(lst, i):
             i = child
         else:
             break
-
-def stack_sort(lst):
-  res = []
-  while lst:
-    num = lst.pop()
-    while res and res[-1] > num:
-      lst.append(res.pop())
-    res.append(num)
-  return res
