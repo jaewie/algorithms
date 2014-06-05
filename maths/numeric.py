@@ -106,5 +106,28 @@ def num_digits(num):
 def div(a, b):
   # Super slow division by repeated subtraction
   if b == 0: raise ZeroDivisionError("Division by zero")
+  if a < 0 or b < 0: return get_sign(a, b) * div(abs(a), abs(b))
   return 1 + div(a - b, b) if a >= b else 0
 
+def long_division(x, y):
+    if y == 0:
+        raise ZeroDivisionError("Can't divide by 0")
+    sign = get_sign(x, y)
+    x, y = abs(x), abs(y)
+
+    result = 0
+    remainder = 0
+    should_divide = lambda remainder: remainder >= y
+
+    for i in map(int, list(str(x))):
+        remainder = (remainder * 10) + i
+        count = 0
+        while should_divide(remainder):
+            remainder -= y
+            count += 1
+        result = (result * 10) + count
+    return sign * result
+
+def get_sign(x, y):
+    '''Return the sign for multiplying or dividing x by y'''
+    return -1 if (x < 0) ^ (y < 0) else 1
