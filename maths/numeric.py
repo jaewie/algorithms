@@ -131,3 +131,9 @@ def long_division(x, y):
 def get_sign(x, y):
     '''Return the sign for multiplying or dividing x by y'''
     return -1 if (x < 0) ^ (y < 0) else 1
+
+def floor(num):
+    return num - num % 1
+
+def ceil(num):
+    return num + (1 - num % 1)
