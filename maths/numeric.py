@@ -3,19 +3,15 @@ from math import sqrt
 from fractions import Fraction
 
 
-def sqroot(target, epsilon=0.0001):
+def sqroot(target, epsilon=10e-4):
     '''Return the squareroot of target.'''
     
-    # Newton's algorithm
-    guess = 1.0
-    
-    while abs(guess ** 2 - target) > epsilon:
-        guess -= (guess ** 2 - target) / (guess * 2.0)
-    return guess
+    f = lambda x: x ** 2 - target
+    return get_root(f, epsilon=epsilon)
 
 def is_prime(n, runs=10):
-    '''Return whether n is prime. There's no false negatives, but false 
-    positives are possible with the probability of (1 / 2) ** runs'''
+    '''Return whether n is prime. False positives are possible with the
+    probability of (1 / 2) ** runs'''
         
     # Fermat's primality test
     f_test = lambda a, n: a ** (n - 1) % n == 1
@@ -48,7 +44,7 @@ def generate_primes(n):
   primes = [i for i in range(2, n + 1)]
   ind = 0
   
-  while ind != len(primes) - 1:
+  while ind < len(primes) - 1:
     cur = primes[ind]
     primes = [num for num in primes if num == cur or num % cur != 0]
     ind += 1
@@ -139,32 +135,21 @@ def floor(num):
 def ceil(num):
     return num + (1 - num % 1)
 
-def inverse(num, iterations=100):
-    # Equivalent to finding the root of f(x) = a - 1 / x
+def inverse(num, guess=10e-5):
+    f = lambda x: num - 1.0 / x
+    newtons_iteration = lambda x: x * (2.0 - num * x)
+    return get_root(f, newtons_iteration = newtons_iteration, guess = guess)
 
-    x = 0.5
-    for _ in range(iterations):
-        x = x * (2.0 - x * num)
-    return x
-
-def kth_root(num, k, epsilon=0.0001):
+def kth_root(num, k, epsilon=10e-4):
     '''Return the kth root of num using Newton's method.'''
 
-    # Equivalent to finding the root of f(x) = x ^ k - num
-    # n_{i + 1} = n_{i} - f(x) / f'(x)
-
     f = lambda x: x ** k - num
-    deriv_f = derivative(f)
+    return get_root(f, epsilon=epsilon)
 
-    guess = 1.0
-    while abs(f(guess)) > epsilon:
-        guess = guess - f(guess) / deriv_f(guess)
-    return guess
-
-def derivative(f, h=0.0001):
+def derivative(f, h=10e-4):
     return lambda x: (f(x + h) - f(x)) / h
 
-def exp_float(num, k, limit_denom=10):
+def exp_float(num, k, limit_denom=5):
     '''Return num raises to power of k where k is some floating point number.'''
 
     # result = num ^ k = num ^ (m / n) where k = m / n
@@ -174,3 +159,13 @@ def exp_float(num, k, limit_denom=10):
     numer, denom = fraction.numerator, fraction.denominator
 
     return kth_root(exp(num, numer), denom)
+
+def get_root(f, f_derivative=None, newtons_iteration=None, guess=1.0, epsilon=10e-4):
+    '''Newton's method to find the root of the function f'''
+    
+    f_derivative = f_derivative or derivative(f)
+    newtons_iteration = newtons_iteration or (lambda x: x - f(x) / f_derivative(x))
+
+    while abs(f(guess)) > epsilon:
+        guess = newtons_iteration(guess)
+    return guess
