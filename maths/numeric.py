@@ -1,5 +1,6 @@
 from random import randint, random
 from math import sqrt
+from fractions import Fraction
 
 
 def sqroot(target, epsilon=0.0001):
@@ -111,7 +112,7 @@ def div(a, b):
 
 def long_division(x, y):
     if y == 0:
-        raise ZeroDivisionError("Can't divide by 0")
+        raise ZeroDivisionError("Division by zero")
     sign = get_sign(x, y)
     x, y = abs(x), abs(y)
 
@@ -137,3 +138,39 @@ def floor(num):
 
 def ceil(num):
     return num + (1 - num % 1)
+
+def inverse(num, iterations=100):
+    # Equivalent to finding the root of f(x) = a - 1 / x
+
+    x = 0.5
+    for _ in range(iterations):
+        x = x * (2.0 - x * num)
+    return x
+
+def kth_root(num, k, epsilon=0.0001):
+    '''Return the kth root of num using Newton's method.'''
+
+    # Equivalent to finding the root of f(x) = x ^ k - num
+    # n_{i + 1} = n_{i} - f(x) / f'(x)
+
+    f = lambda x: x ** k - num
+    deriv_f = derivative(f)
+
+    guess = 1.0
+    while abs(f(guess)) > epsilon:
+        guess = guess - f(guess) / deriv_f(guess)
+    return guess
+
+def derivative(f, h=0.0001):
+    return lambda x: (f(x + h) - f(x)) / h
+
+def exp_float(num, k, limit_denom=10):
+    '''Return num raises to power of k where k is some floating point number.'''
+
+    # result = num ^ k = num ^ (m / n) where k = m / n
+    #        = (num ^ m) ^ (1 / n)
+
+    fraction = Fraction(k).limit_denominator(limit_denom)
+    numer, denom = fraction.numerator, fraction.denominator
+
+    return kth_root(exp(num, numer), denom)
