@@ -174,17 +174,11 @@ def get_root(f, f_derivative=None, newtons_iteration=None, guess=1.0, epsilon=10
 def sin(x, terms=25):
     '''Calculate sin(x) using Taylor series.'''
 
-    @cache
-    def factorial(i):
-        if i <= 1:
-            return 1
-        return i * factorial(i - 1)
-
     def get_ith_term_value(x, i):
         is_positive = i % 2 == 0
         sign = 1 if is_positive else -1
         degree = i * 2 + 1
-        return sign * (x ** degree / factorial(degree))
+        return sign * (float(x ** degree) / factorial(degree))
     
     return sum(get_ith_term_value(x, i) for i in range(terms))
 
@@ -193,3 +187,13 @@ def cos(x):
 
 def tan(x):
     return sin(x) / cos(x)
+
+def exp(x, terms=25):
+    get_ith_term = lambda x, i: float(x ** i) / factorial(i)
+    return sum(get_ith_term(x, i) for i in range(terms))
+
+@cache
+def factorial(i):
+    if i <= 1:
+        return 1
+    return i * factorial(i - 1)
