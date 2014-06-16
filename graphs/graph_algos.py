@@ -1,4 +1,7 @@
 from copy import deepcopy
+from graph import Graph
+from Queue import PriorityQueue
+
 
 def kruskals(adj_list):
     '''Return a minimum spanning tree of adj_list using Kruskal's algo.'''

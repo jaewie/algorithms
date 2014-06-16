@@ -1,5 +1,5 @@
 from bst import BST, find_max
-from node import Node
+from avl_node import AVLNode
 
 
 class AVL(BST):
@@ -7,19 +7,17 @@ class AVL(BST):
     super(AVL, self).__init__()
 
   def insert(self, value):
-
-    node = Node(value)
+    node = AVLNode(value)
     super(AVL, self).insert(node)
     node.update_parent_heights()
     fix_parent_unbalance_by_rotations(node)
 
   def delete(self, val):
-
     node = self.find(val)
 
     if node:
       lc, rc = node.left, node.right
-      to_balance = find_max(node.left).parent node.has_both_siblings() else node.parent
+      to_balance = find_max(node.left).parent if node.has_both_siblings() else node.parent
 
       super(AVL, self).delete(val) 
 

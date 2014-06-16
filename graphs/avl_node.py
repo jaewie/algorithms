@@ -1,9 +1,9 @@
-class Node(object):
+from tree_node import TreeNode
+
+
+class AVLNode(TreeNode):
   def __init__(self, value):
-    self.val = value
-    self.left = None
-    self.right = None
-    self.parent = None
+    TreeNode.__init__(self, value) 
     self.height = None
 
   def has_parent(self):
