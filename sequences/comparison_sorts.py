@@ -16,25 +16,12 @@ def quick_sort(lst):
 
     return quick_sort(less) + same + quick_sort(bigger)
 
-
 def merge_sort(lst):
     if len(lst) <= 1:
         return lst
     left = merge_sort(lst[:len(lst) / 2])
     right = merge_sort(lst[len(lst) / 2:])
     return _merge(left, right)
-
-def _merge(left_lst, right_lst):
-    '''Return the merge of sorted lists left_lst and right_lst'''
-
-    if not left_lst or not right_lst:
-      return left_lst or right_lst
-
-    left, right = left_lst[0], right_lst[0]
-    if left <= right:
-      return [left] + _merge(left_lst[1:], right_lst)
-    else:
-      return [right] + _merge(left_lst, right_lst[1:])
 
 def insertion_sort(lst):
     for i in range(len(lst)):
@@ -109,6 +96,15 @@ def comb_sort(lst):
                 swapped = True
     return lst
 
+def pancake_sort(lst):
+    max_pos = lambda lst: lst.index(max(lst))
+
+    for size in reversed(range(len(lst))):
+        max_ind = max_pos(lst[:size + 1])
+        reverse(lst, 0, max_ind)
+        reverse(lst, 0, size)
+    return lst
+
 def make_heap(lst):
     '''Turn lst into a min-heap'''
 
@@ -137,3 +133,21 @@ def bubble_down(lst, i):
             i = child
         else:
             break
+
+def _merge(left_lst, right_lst):
+    '''Return the merge of sorted lists left_lst and right_lst'''
+
+    if not left_lst or not right_lst:
+      return left_lst or right_lst
+
+    left, right = left_lst[0], right_lst[0]
+    if left <= right:
+      return [left] + _merge(left_lst[1:], right_lst)
+    else:
+      return [right] + _merge(left_lst, right_lst[1:])
+
+def reverse(lst, start, end):
+    while start < end:
+        lst[start], lst[end] = lst[end], lst[start]
+        start += 1
+        end -= 1
