@@ -19,8 +19,8 @@ def quick_sort(lst):
 def merge_sort(lst):
     if len(lst) <= 1:
         return lst
-    left = merge_sort(lst[:len(lst) / 2])
-    right = merge_sort(lst[len(lst) / 2:])
+    left = merge_sort(lst[:len(lst) // 2])
+    right = merge_sort(lst[len(lst) // 2:])
     return _merge(left, right)
 
 def insertion_sort(lst):
@@ -87,7 +87,7 @@ def comb_sort(lst):
     shrink = 1.3
 
     while gap or swapped:
-        gap = int(gap / shrink)
+        gap = int(gap // shrink)
         swapped = False
 
         for i in range(len(lst) - gap):
@@ -108,7 +108,7 @@ def pancake_sort(lst):
 def make_heap(lst):
     '''Turn lst into a min-heap'''
 
-    for i in range(len(lst)/2 - 1, -1, -1):
+    for i in range(len(lst) //2 - 1, -1, -1):
         bubble_down(lst, i)
 
 def bubble_down(lst, i):

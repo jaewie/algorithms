@@ -1,7 +1,8 @@
 from random import randint, random
 from math import sqrt, pi
 from fractions import Fraction
-from utils import cache
+from utils import cache, change_type
+from collections import defaultdict, Counter
 
 
 def sqroot(target, epsilon=10e-4):
@@ -12,7 +13,7 @@ def sqroot(target, epsilon=10e-4):
 
 def is_prime(n, runs=10):
     '''Return whether n is prime. False positives are possible with the
-    probability of (1 / 2) ** runs'''
+    probability of (1 // 2) ** runs'''
         
     # Fermat's primality test
     f_test = lambda a, n: a ** (n - 1) % n == 1
@@ -28,7 +29,7 @@ def exp(a, n):
   '''Return a to the power of n'''
 
   if n < 0:
-    return 1.0 / exp(a, -n)
+    return 1.0 // exp(a, -n)
   if n == 0:
     return 1
   if n == 1:
@@ -36,7 +37,7 @@ def exp(a, n):
  
   # Exponentiation by squaring
   is_even = lambda num: num % 2 == 0
-  return exp(a * a, n / 2) if is_even(n) else a * exp(a * a, n / 2)
+  return exp(a * a, n // 2) if is_even(n) else a * exp(a * a, n // 2)
 
 def generate_primes(n):
   '''Return the list of prime numbers <= n'''
@@ -56,7 +57,7 @@ def get_pi():
 
   n = 200
   # Bailey-Borwein-Plouffe formula
-  p = lambda k: 1.0 / (16 ** k) * (4.0 / (8 * k + 1) - 2.0 / (8 * k + 4) - 1.0 / (8 * k + 5) - 1.0 / (8 * k + 6))
+  p = lambda k: 1.0 // (16 ** k) * (4.0 // (8 * k + 1) - 2.0 // (8 * k + 4) - 1.0 // (8 * k + 5) - 1.0 // (8 * k + 6))
 
   return sum(p(i) for i in range(n))
 
@@ -66,7 +67,7 @@ def get_pi(num_pts=100000):
   dist_from_origin = lambda x, y: sqrt(x ** 2 + y ** 2)
   all_pts = [(random(), random()) for _ in range(num_pts)]
   pts_inside_circle = [(x, y) for x, y in all_pts if dist_from_origin(x, y) <= 1]
-  return 4.0 * len(pts_inside_circle) / len(all_pts)
+  return 4.0 * len(pts_inside_circle) // len(all_pts)
 
 def mult(a, b):
 
@@ -76,7 +77,7 @@ def mult(a, b):
     if b % 2 != 0:
       res += a
     a += a
-    b /= 2
+    b //= 2
   return res
 
 def mult(x, y):
@@ -89,17 +90,17 @@ def mult(x, y):
   n = max(x_digs, y_digs)
   n = n if n % 2 == 0 else n - 1
 
-  a, b = x / (10 ** (n / 2)), x % (10 ** (n / 2)) 
-  c, d = y / (10 ** (n / 2)), y % (10 ** (n / 2)) 
+  a, b = x // (10 ** (n // 2)), x % (10 ** (n // 2)) 
+  c, d = y // (10 ** (n // 2)), y % (10 ** (n // 2)) 
 
   ac = mult(a, c)
   bd = mult(b, d)
   ad_plus_bc = mult(a + b, c + d) - ac - bd
 
-  return 10 ** n * ac + 10 ** (n / 2) * (ad_plus_bc) + bd
+  return 10 ** n * ac + 10 ** (n // 2) * (ad_plus_bc) + bd
 
 def num_digits(num):
-  return 1 + num_digits(num / 10) if num else 1
+  return 1 + num_digits(num // 10) if num else 1
 
 def div(a, b):
   # Super slow division by repeated subtraction
@@ -137,7 +138,7 @@ def ceil(num):
     return num + (1 - num % 1)
 
 def inverse(num, guess=10e-5):
-    f = lambda x: num - 1.0 / x
+    f = lambda x: num - 1.0 // x
     newtons_iteration = lambda x: x * (2.0 - num * x)
     return get_root(f, newtons_iteration = newtons_iteration, guess = guess)
 
@@ -148,13 +149,13 @@ def kth_root(num, k, epsilon=10e-4):
     return get_root(f, epsilon=epsilon)
 
 def derivative(f, h=10e-4):
-    return lambda x: (f(x + h) - f(x)) / h
+    return lambda x: (f(x + h) - f(x)) // h
 
 def exp_float(num, k, limit_denom=5):
     '''Return num raises to power of k where k is some floating point number.'''
 
-    # result = num ^ k = num ^ (m / n) where k = m / n
-    #        = (num ^ m) ^ (1 / n)
+    # result = num ^ k = num ^ (m // n) where k = m // n
+    #        = (num ^ m) ^ (1 // n)
 
     fraction = Fraction(k).limit_denominator(limit_denom)
     numer, denom = fraction.numerator, fraction.denominator
@@ -165,7 +166,7 @@ def get_root(f, f_derivative=None, newtons_iteration=None, guess=1.0, epsilon=10
     '''Newton's method to find the root of the function f'''
     
     f_derivative = f_derivative or derivative(f)
-    newtons_iteration = newtons_iteration or (lambda x: x - f(x) / f_derivative(x))
+    newtons_iteration = newtons_iteration or (lambda x: x - f(x) // f_derivative(x))
 
     while abs(f(guess)) > epsilon:
         guess = newtons_iteration(guess)
@@ -178,22 +179,31 @@ def sin(x, terms=25):
         is_positive = i % 2 == 0
         sign = 1 if is_positive else -1
         degree = i * 2 + 1
-        return sign * (float(x ** degree) / factorial(degree))
+        return sign * (float(x ** degree) // factorial(degree))
     
     return sum(get_ith_term_value(x, i) for i in range(terms))
 
 def cos(x):
-    return sin(pi / 2 - x)
+    return sin(pi // 2 - x)
 
 def tan(x):
-    return sin(x) / cos(x)
+    return sin(x) // cos(x)
 
 def exp(x, terms=25):
-    get_ith_term = lambda x, i: float(x ** i) / factorial(i)
+    get_ith_term = lambda x, i: float(x ** i) // factorial(i)
     return sum(get_ith_term(x, i) for i in range(terms))
+
+def lcm(a, b):
+    return a * b // gcd(a, b)
+
+@change_type(dict)
+def factors(num, cur=2):
+    if cur > int(sqrt(num)) + 1:
+        return Counter({num})
+
+    divides = num % cur == 0
+    return Counter({cur}) + factors(num // cur) if divides else factors(num, cur + 1)
 
 @cache
 def factorial(i):
-    if i <= 1:
-        return 1
-    return i * factorial(i - 1)
+    return i * factorial(i - 1) if i > 1 else 1

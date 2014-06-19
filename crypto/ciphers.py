@@ -1,7 +1,6 @@
 from crypto import shift_char
 from string import lowercase
 from random import randint
-from string import lowercase
 from itertools import cycle, starmap, izip
 
 

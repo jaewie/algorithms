@@ -16,7 +16,7 @@ def _closest_pair(px, py):
     pt0, pt1, pt2 = px
     return min((pt0, pt1), (pt0, pt2), (pt1, pt2), key=distance)
 
-  mid = len(px) / 2
+  mid = len(px) // 2
   mid_line = px[mid][0]
   L = _closest_pair(px[:mid], py[:mid])
   R = _closest_pair(px[:mid + 1], py[:mid + 1])

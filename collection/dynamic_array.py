@@ -45,7 +45,7 @@ class DynamicArray(object):
     self._size -= 1
     item = self._array[self._size]
 
-    if self._size > self._min_capacity and self._size / float(self._capacity) < 0.25:
+    if self._size > self._min_capacity and self._size // float(self._capacity) < 0.25:
       self._capacity /= 2
       self._resize(self._capacity)
     return item

@@ -51,7 +51,7 @@ class PriorityQueue(object):
     return not self.heap
 
   def parent(self, ind):
-    return (ind - 1) / 2
+    return (ind - 1) // 2
 
   def left_child(self, ind):
     return (ind * 2) + 1

@@ -62,8 +62,8 @@ def med_of_meds(lst, n):
         return sorted(lst)[n]
     
     lsts = [lst[i:i+5] for i in range(0, len(lst), 5)]
-    medians = [med_of_meds(_lst, len(_lst) / 2) for _lst in lsts]
-    piv = med_of_meds(medians, len(medians) / 2)
+    medians = [med_of_meds(_lst, len(_lst) // 2) for _lst in lsts]
+    piv = med_of_meds(medians, len(medians) // 2)
 
     less = [x for x in lst if x < piv]
     same = [x for x in lst if x == piv]
@@ -80,7 +80,7 @@ def binary_search(lst, target):
     ''' Binary search is worst case O(log n)'''
     low, high = 0, len(lst) - 1
     while low <= high:
-        mid = (high + low) / 2
+        mid = (high + low) // 2
         if lst[mid] < target:
             low = mid + 1
         elif lst[mid] > target:

@@ -14,7 +14,7 @@ def _bucket_sort(queue, num_buckets=10):
       return lst
     
     sm, big = min(lst), max(lst)
-    size = (big - sm) / num_buckets + 1
+    size = (big - sm) // num_buckets + 1
     buckets = [Queue() for _ in range(num_buckets)]
     for num in lst:
       for i, step in enumerate(range(sm + size, big + size + 1, size)):
@@ -45,7 +45,7 @@ def radix_sort(lst):
     buckets = [Queue() for _ in range(10)]
     for i in range(digits):
         for num in lst:
-            digit = num / (10 ** i) % 10
+            digit = num // (10 ** i) % 10
             buckets[digit].put(num)
         lst = empty_buckets(buckets)
     return lst
