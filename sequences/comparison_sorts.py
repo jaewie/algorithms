@@ -50,6 +50,25 @@ def bubble_sort(lst):
                 lst[j], lst[j + 1] = lst[j + 1], lst[j]
     return lst
 
+def cocktail_sort(lst):
+    is_sorted = False
+    j = 0
+
+    while not is_sorted:
+        is_sorted = True
+
+        for i in range(j, len(lst) - 1 - j, 1):
+            if lst[i] > lst[i + 1]:
+                lst[i], lst[i + 1], = lst[i + 1], lst [i]
+                is_sorted = False
+
+        for i in range(len(lst) - 1 - j, j, -1):
+            if lst[i - 1] > lst[i]:
+                lst[i], lst[i - 1] = lst[i - 1], lst[i]
+                is_sorted = False
+        j += 1
+    return lst
+
 def selection_sort(lst):
     for i, m in enumerate(range(len(lst))):
         for j in range(i, len(lst)):
