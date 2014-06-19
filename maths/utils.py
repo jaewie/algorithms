@@ -16,7 +16,9 @@ def change_type(_type):
             nonlocal initial_call
             if initial_call:
                 initial_call = False
-                return _type(f(*args, **kwargs))
+                return_value =  _type(f(*args, **kwargs))
+                initial_call = True
+                return return_value
             else:
                 return f(*args, **kwargs)
         return wrapper
