@@ -8,3 +8,20 @@ def count_bits(n):
 
 def is_power_of_two(n):
     return not (n & (n - 1))
+
+def is_zero(n):
+    return not n
+
+def is_negative(n):
+    return (n >> 31) & 1
+
+def is_positive(n):
+    return (not is_zero(n)) & (not is_negative(n))
+
+def max(x, y):
+    diff = x - y
+    return x + (diff * is_negative(diff) * -1)
+
+def min(x, y):
+    diff = x - y
+    return y - (diff * is_negative(diff) * -1)
