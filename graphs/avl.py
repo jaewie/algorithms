@@ -55,35 +55,20 @@ def fix_parent_unbalance_by_rotations(parent):
 
     parent = parent.parent
 
-
 def _is_right_left_case(node, parent):
-  if not node or not parent:
-    return False
-
-  bf = node.balance_factor
-  par_bf = parent.balance_factor
-  return par_bf == 2 and bf == -1
- 
+    return is_correct_balance_factor(node, parent, -1, 2)
 def _is_left_right_case(node, parent):
-  if not node or not parent:
-    return False
-
-  bf = node.balance_factor
-  par_bf = parent.balance_factor
-  return par_bf == -2 and bf == 1
+    return is_correct_balance_factor(node, parent, 1, -2)
  
 def _is_left_left_case(node, parent):
-  if not node or not parent:
-    return False
-
-  bf = node.balance_factor
-  par_bf = parent.balance_factor
-  return par_bf == -2 and bf == -1
+    return is_correct_balance_factor(node, parent, -1, -2)
 
 def _is_right_right_case(node, parent):
-  if not node or not parent:
-    return False
+    return is_correct_balance_factor(node, parent, 1, 2)
 
-  bf = node.balance_factor
-  par_bf = parent.balance_factor
-  return par_bf == 2 and bf == 1
+def is_correct_balance_factor(node, parent, expected_bf, expected_par_bf):
+    if not node or not parent:
+        return False
+    bf = node.balance_factor
+    par_bf = parent.balance_factor
+    return bf == expected_bf and par_bf == expected_par_bf
