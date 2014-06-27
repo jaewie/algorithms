@@ -88,3 +88,22 @@ def binary_search(lst, target):
         else:
             return mid
     return -1
+
+def kway_merge(lsts):
+    if len(lsts) <= 1:
+        return lsts[0] if lsts else []
+    mid = len(lsts) // 2
+    left, right = kway_merge(lsts[:mid]), kway_merge(lsts[mid:])
+    return two_way_merge(left, right)
+
+def two_way_merge(left, right):
+    if not left:
+        return right
+    if not right:
+        return left
+    
+    l, r = left[0], right[0]
+    m = min(l, r)
+    left = left[1:] if l <= r else left
+    right = right[1:] if l >= r else right
+    return [m] + two_way_merge(left, right)
