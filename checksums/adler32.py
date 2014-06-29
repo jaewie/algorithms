@@ -1,4 +1,4 @@
-from math impor ceil
+from math import ceil
 
 
 def adler32(data, chunk_size, prime=65521):
@@ -30,5 +30,5 @@ def adler32(data, chunk_size, prime=65521):
         end = min(n, (c + 1) * chunk_size)
         a_value = a(data, start, end)
         b_value = b(data, start, end)
-        adler32_checksums.append(b_value * (1 << 16) + a_value)
+        adler32_checksums.append(b_value << 16 + a_value)
     return adler32_checksums
