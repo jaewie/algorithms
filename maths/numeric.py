@@ -196,7 +196,19 @@ def exp(x, terms=25):
 def lcm(a, b):
     return a * b // gcd(a, b)
 
-@change_type(dict)
+def random_generator_factory(m, a, c):
+    def _random_generator(m, a, c, seed=None):
+        if seed is None:
+            seed = 0
+        def generator():
+            nonlocal seed
+            seed = (a * seed + c) % m
+            return seed
+        return generator
+    return _random_generator(m, a, c)
+
+random = random_generator_factory(m=2**32, a=1664525, c=1013904223)
+
 def factors(num, cur=2):
     if cur > int(sqrt(num)) + 1:
         return Counter({num})
