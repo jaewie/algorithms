@@ -25,3 +25,6 @@ def max(x, y):
 def min(x, y):
     diff = x - y
     return y - (diff * is_negative(diff) * -1)
+
+def add(a, b):
+    return add(a ^ b, (a & b) << 1) if b else a
