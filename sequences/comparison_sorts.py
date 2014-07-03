@@ -1,4 +1,4 @@
-import random
+from random import choice
 import Queue
 
 
@@ -8,8 +8,7 @@ def quick_sort(lst):
     if len(lst) <= 1:
         return lst
     
-    ind = random.randint(0, len(lst) - 1)
-    pivot = lst[ind]
+    pivot = choice(lst)
     less = [x for x in lst if x < pivot]
     same = [x for x in lst if x == pivot]
     bigger = [x for x in lst if x > pivot]
