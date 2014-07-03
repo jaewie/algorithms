@@ -1,4 +1,5 @@
-import random
+from random import choice
+from functools import reduce
 
 
 def max_subarray(lst):
@@ -39,8 +40,7 @@ def quick_select(lst, n):
     if not lst or len(lst) < n:
         raise IndexError("lst doesn't have n elements")
     
-    ind = random.randint(0, len(lst) - 1)
-    piv = lst[ind]
+    piv = choice(lst)
     less = [x for x in lst if x < piv]
     same = [x for x in lst if x == piv]
     bigger = [x for x in lst if x > piv]
@@ -107,3 +107,7 @@ def two_way_merge(left, right):
     left = left[1:] if l <= r else left
     right = right[1:] if l >= r else right
     return [m] + two_way_merge(left, right)
+
+def flatten(lsts):
+    lsts = [flatten(e) if isinstance(e, list) else [e] for e in lsts]
+    return reduce(list.__add__, lsts, [])
