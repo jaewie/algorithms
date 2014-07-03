@@ -1,5 +1,7 @@
-from Queue import Queue
+from queue import Queue
 from collections import Counter
+from operator import le
+from itertools import tee
 
 
 def bucket_sort(lst):
@@ -36,11 +38,12 @@ def to_list(queue):
       lst.append(queue.get())
     return lst
 
-def is_sorted(lst):
-    return all(lst[i] <= lst[i + 1] for i in range(len(lst) - 1))
+def is_sorted(iterable, key=le):
+    a, b = tee(iterable)
+    next(b, None)
+    return all(map(key, a, b))
 
 def radix_sort(lst):
-    
     digits = len(str(max(lst)))
     buckets = [Queue() for _ in range(10)]
     for i in range(digits):
