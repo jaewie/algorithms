@@ -55,6 +55,3 @@ class DynamicArray(object):
     for i in range(self._size):
       new_ary[i] = self._array[i]
     self._array = new_ary
- 
-
-
