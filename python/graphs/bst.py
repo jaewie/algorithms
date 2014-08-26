@@ -1,4 +1,4 @@
-from node import Node
+from tree_node import TreeNode
 
 
 class BST(object):
@@ -6,7 +6,7 @@ class BST(object):
     self._root = None
 
   def insert(self, ele):
-    node = ele if isinstance(ele, Node) else Node(ele)
+    node = ele if isinstance(ele, TreeNode) else TreeNode(ele)
     self._root = _insert(self.root, node)
 
   def delete(self, val):
