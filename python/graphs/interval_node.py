@@ -32,10 +32,10 @@ class IntervalNode(TreeNode):
         q_lo, q_hi = query_interval
         is_between = lambda c, lo, hi: lo <= c <= hi
 
-        return is_between(q_lo, lo, hi) or \
-               is_between(q_hi, lo, hi) or \
-               is_between(lo, q_lo, q_hi) or \
-               is_between(hi, q_lo, q_hi)
+        return (is_between(q_lo, lo, hi) or
+                is_between(q_hi, lo, hi) or
+                is_between(lo, q_lo, q_hi) or
+                is_between(hi, q_lo, q_hi))
 
     def query(self, query_interval):
         result = []
