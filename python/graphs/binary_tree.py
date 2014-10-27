@@ -57,16 +57,14 @@ def rec_DFS(node, lst=None):
     '''Return a DFS of node recursively'''
     return depth_lim_search(node, sys.maxint)
 
-def depth_lim_search(node, lim, lst=None):
-  if lst is None:
-    lst = []
-  if node and lim:
-    lst.append(node.data)
-    if node.left:
-      depth_lim_search(node.left, lim - 1, lst)
-    if node.right:
-      depth_lim_search(node.right, lim - 1, lst)
-  return lst
+def depth_lim_search(node, lim):
+  if not node or not lim:
+      return []
+
+  left = depth_lim_search(node.left, lim - 1)
+  right = depth_lim_search(node.right, lim - 1)
+
+  return [node.data] + left + right
 
 def iterative_deepining_dfs(node, depth):
   return reduce(list.__add__, [depth_lim_search(node, i) for i in range(depth + 1)])
