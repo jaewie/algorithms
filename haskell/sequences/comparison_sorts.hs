@@ -2,9 +2,9 @@ import Data.List
 
 qsort :: (Ord a) => [a] -> [a]
 qsort [] = []
-qsort (x:xs) = let le = [e | e <- xs, e < x]
-                   gt = [e | e <- xs, e > x]
-                   sm = [e | e <- xs, e == x] ++ [x]
+qsort (x:xs) = let le = filter (<x) xs
+                   gt = filter (>x) xs
+                   sm = filter (==x) xs ++ [x]
                in (qsort le) ++ sm ++ (qsort gt)
 
 msort :: (Ord a) => [a] -> [a]
