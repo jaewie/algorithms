@@ -22,12 +22,8 @@ def _merge(heap0, heap1):
     elif not heap1:
         return heap0
 
-    val_getter = lambda root: root.val
-    p = min(heap0, heap1, key=val_getter)
-    q = max(heap0, heap1, key=val_getter)
+    sm_heap = min(heap0, heap1, key=lambda root: root.val)
+    big_heap = max(heap0, heap1, key=lambda root: root.val)
+    sm_heap.left, sm_heap.right = _merge(sm_heap.right, big_heap), sm_heap.left
 
-    p_right = p.right
-    p.right = p.left
-    p.left = _merge(p_right, q)
-
-    return p
+    return sm_heap
