@@ -2,6 +2,8 @@ from queue import Queue
 from collections import Counter
 from operator import le
 from itertools import tee
+from threading import Thread
+from time import sleep
 
 
 def bucket_sort(lst):
@@ -63,3 +65,19 @@ def empty_buckets(buckets):
 def count_sort(lst):
   counter = Counter(lst)
   return reduce(list.__add__, [[num] * counter.get(num, 0) for num in range(min(lst), max(lst) + 1)])
+
+def sleep_sort(lst):
+    result = []
+    threads = []
+    for num in lst:
+        thread = Thread(target=_sleep_append, args=(result, num))
+        threads.append(thread)
+        thread.start()
+
+    for thread in threads:
+        thread.join()
+    return result
+
+def _sleep_append(lst, num):
+    sleep(num)
+    lst.append(num)
