@@ -2,6 +2,7 @@ from queue import Queue
 from collections import Counter
 from operator import le
 from itertools import tee
+from functools import reduce
 from threading import Thread
 from time import sleep
 
@@ -63,8 +64,11 @@ def empty_buckets(buckets):
     return lst
 
 def count_sort(lst):
-  counter = Counter(lst)
-  return reduce(list.__add__, [[num] * counter.get(num, 0) for num in range(min(lst), max(lst) + 1)])
+    counter = Counter(lst)
+    flatten = lambda L: reduce(list.__add__, L)
+    whole_range = range(min(lst), max(lst) + 1)
+
+    return flatten([[num] * counter.get(num, 0) for num in whole_range])
 
 def sleep_sort(lst):
     result = []
