@@ -163,3 +163,30 @@ def update_scores(coord, visiting_coord, end_node):
     coord['g_score'] = visiting_coord['g_score'] + 1
     coord['h_score'] = calculate_hscore(coord, end_node)
     coord['f_score'] = coord['g_score'] + coord['h_score']    
+
+def topological_sort(prereq_task):
+    def get_task_prereq(prereq_task):
+        task_prereq = {c: [] for c in prereq_task}
+
+        for prereq, rely_prereq in prereq_task.iteritems():
+            for task in rely_prereq:
+                task_prereq[task].append(prereq)
+
+        return task_prereq
+
+    task_prereq = get_task_prereq(prereq_task)
+
+    todo = [c for c, deps in task_prereq.iteritems() if not deps]
+    order = []
+
+    while todo:
+        prereq = todo.pop()
+        order.append(prereq)
+
+        for t in prereq_task[prereq]: # These tasks rely on pre-req
+
+            task_prereq[t].remove(prereq)
+
+            if not task_prereq[t]:
+                todo.append(t)
+    return order
