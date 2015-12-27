@@ -59,5 +59,21 @@ unsigned bitwise_or(unsigned a, unsigned b) {
 
 int abs(int x) {
     int y = x >> 31;
-    return (x ^ y) - y; // (x + y) ^ y and x - (2*x & y) also works
+
+    // Other solutions:
+    // (x + y) ^ y
+    // x - (2*x & y)
+    return (x ^ y) - y;
+}
+
+int sign(int x) {
+    // -1 if x < 0
+    // 0  if x = 0
+    // 1  if x > 0
+    unsigned x_unsigned = x;
+
+    // Other solutions:
+    // (x > 0) - (x < 0)
+    // -(x_unsigned >> 31) | (x_unsigned >> 31)
+    return (x >> 31) | (-x_unsigned >> 31);
 }
