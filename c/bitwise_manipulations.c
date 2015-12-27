@@ -56,3 +56,8 @@ unsigned bitwise_and(unsigned a, unsigned b) {
 unsigned bitwise_or(unsigned a, unsigned b) {
     return (a & ~b) + b;
 }
+
+int abs(int x) {
+    int y = x >> 31;
+    return (x ^ y) - y; // (x + y) ^ y and x - (2*x & y) also works
+}
