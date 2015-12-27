@@ -10,3 +10,4 @@ unsigned bitwise_and(unsigned a, unsigned b);
 unsigned bitwise_or(unsigned a, unsigned b);
 int abs(int x);
 int sign(int x);
+unsigned avg_floor(unsigned a, unsigned b);

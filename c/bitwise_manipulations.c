@@ -77,3 +77,12 @@ int sign(int x) {
     // -(x_unsigned >> 31) | (x_unsigned >> 31)
     return (x >> 31) | (-x_unsigned >> 31);
 }
+
+unsigned avg_floor(unsigned a, unsigned b) {
+    // floor((a + b) / 2) without overflowing
+
+    // Works by taking sum of averages of
+    // - bits in a and b that intersect
+    // - bits in a and b that don't intersect
+    return (a & b) + ((a ^ b) >> 1);
+}
