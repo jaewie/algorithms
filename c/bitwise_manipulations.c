@@ -86,3 +86,22 @@ unsigned avg_floor(unsigned a, unsigned b) {
     // - bits in a and b that don't intersect
     return (a & b) + ((a ^ b) >> 1);
 }
+
+
+unsigned avg_ceil(unsigned a, unsigned b) {
+    // ceil((a + b) / 2) without overflowing
+    //
+    // Let x, y be bits in a, b resp. that are intersecting.
+    // and j, k be bits in a, b resp. that are not intersecting.
+    //
+    // (x + y) is even because they are pairs of bits that are intersecting.
+    //
+    // (a | b) = (x + y) / 2 + j + k
+    // (a ^ b) >> 1 = floor((j + k) / 2)
+    //
+    // (a | b) - ((a ^ b) >> 1) = (x + y) / 2 + j + k - floor((j + k) / 2)
+    //                          = (x + y) / 2 + ceil((j + k) / 2)
+    //                          = ceil((x + y + j + k) / 2)
+    //                          = ceil((a + b) / 2)
+    return (a | b) - ((a ^ b) >> 1);
+}
