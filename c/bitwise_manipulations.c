@@ -105,3 +105,43 @@ unsigned avg_ceil(unsigned a, unsigned b) {
     //                          = ceil((a + b) / 2)
     return (a | b) - ((a ^ b) >> 1);
 }
+
+int equal_to_zero(int x) {
+    // Other solutions:
+    // (abs(x) - 1) >> 31
+    // abs(x + 0x80000000) >> 31
+    // (nlz(x) << 26) >> 31 where x is unsigned
+    // -(nlz(x) >> 5) >> 31
+    // (~x & (x - 31)) >> 31
+    return ((unsigned) ~(x | -x)) >> 31;
+}
+
+int not_equal_to_zero(int x) {
+    // Other solutions:
+    // nabs(x) >> 31
+    // (nlz(x) - 32) >> 31
+    // ((x >> 1) - x) >> 31 where x is unsigned
+    return ((unsigned) (x | -x)) >> 31;
+}
+
+int less_than_zero(int x) {
+    return ((unsigned) x) >> 31;
+}
+
+int less_than_or_equal_to_zero(int x) {
+    // Other solutions:
+    // (x | ~-x) >> 31
+    // (x ^ nabs(x)) >> 31
+    return ((unsigned) (x | (x - 1))) >> 31;
+}
+
+int greater_than_zero(int x) {
+    // Other solutions:
+    // (x ^ nabs(x)) >> 31
+    // (-x & ~x) >> 31
+    return ((unsigned) ((x >> 1) - x)) >> 31;
+}
+
+int greater_than_or_equal_to_zero(int x) {
+    return ((unsigned) ~x) >> 31;
+}
