@@ -2,6 +2,7 @@ from tree_node import TreeNode
 
 
 class IntervalNode(TreeNode):
+
     def __init__(self, interval):
         super(IntervalNode, self).__init__(interval)
         self._max_endpoint = self.hi

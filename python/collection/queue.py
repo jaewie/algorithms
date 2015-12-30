@@ -1,30 +1,32 @@
 class Queue(object):
+
     def __init__(self):
         self._head = None
         self._tail = None
-    
+
     class Node(object):
+
         def __init__(self, val):
             self.val = val
             self.next = None
-            self.prev = None    
-    
+            self.prev = None
+
     def enqueue(self, val):
         node = self.Node(val)
-        
+
         if not self._tail:
             self._head = self._tail = node
         else:
             self._tail.next = node
             node.prev = self._tail
             self._tail = self._tail.next
-            
+
     def dequeue(self):
         if not self._head:
             raise IndexError("Dequeue from empty queue")
-        
+
         node = self.peek()
-        
+
         if self._head == self._tail:
             self._head = self._tail = None
         else:

@@ -1,4 +1,5 @@
 class DisjointSet(object):
+
     def __init__(self, value, rank=0, parent=None):
         self.value = value
         self._rank = rank

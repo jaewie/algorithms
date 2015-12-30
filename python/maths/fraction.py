@@ -1,4 +1,5 @@
 class Fraction(object):
+
     def __init__(self, val):
         self.val = float(val)
         self.numer, self.denom = self.val.as_integer_ratio()
@@ -12,7 +13,7 @@ class Fraction(object):
         _gcd = gcd(numer, denom)
 
         self.numer = numer // _gcd
-        self.denom = denom // _gcd 
+        self.denom = denom // _gcd
         return self
 
     @property

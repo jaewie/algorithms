@@ -7,16 +7,20 @@ def adler32(data, chunk_size, prime=65521):
 
     def a(data, start, end):
         if (start - 1, end - 1) in _a:
-            _a[start, end] = _a[start - 1, end - 1] - data[start - 1] + data[end] % prime
+            _a[start, end] = _a[start - 1, end - 1] - \
+                data[start - 1] + data[end] % prime
         else:
             _a[start, end] = 1 + sum(data[start:end]) % prime
         return _a[start, end]
 
     def b(data, start, end):
         if (start - 1, end - 1) in _b:
-            _b[start, end] = _b[start - 1, end - 1] - (end - start + 1) * data[start - 1] + a(data, start, end) % prime
+            _b[start, end] = _b[start - 1, end - 1] - \
+                (end - start + 1) * data[start - 1] + \
+                a(data, start, end) % prime
         else:
-            _b[start, end] = sum(1 + (end - start - i) * x for i, x in enumerate(data[start:end])) % prime
+            _b[start, end] = sum(
+                1 + (end - start - i) * x for i, x in enumerate(data[start:end])) % prime
         return _b[start, end]
     _a = {}
     _b = {}

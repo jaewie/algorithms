@@ -3,68 +3,76 @@ from avl_node import AVLNode
 
 
 class AVL(BST):
-  def __init__(self):
-    super(AVL, self).__init__()
 
-  def insert(self, value):
-    node = AVLNode(value)
-    super(AVL, self).insert(node)
-    node.update_parent_heights()
-    fix_parent_unbalance_by_rotations(node)
+    def __init__(self):
+        super(AVL, self).__init__()
 
-  def delete(self, val):
-    node = self.find(val)
+    def insert(self, value):
+        node = AVLNode(value)
+        super(AVL, self).insert(node)
+        node.update_parent_heights()
+        fix_parent_unbalance_by_rotations(node)
 
-    if node:
-      lc, rc = node.left, node.right
-      to_balance = find_max(node.left).parent if node.has_both_siblings() else node.parent
+    def delete(self, val):
+        node = self.find(val)
 
-      super(AVL, self).delete(val) 
+        if node:
+            lc, rc = node.left, node.right
+            to_balance = find_max(
+                node.left).parent if node.has_both_siblings() else node.parent
 
-      if not to_balance is None:
-        to_balance.update_parent_heights()
-        fix_parent_unbalance_by_rotations(to_balance)
+            super(AVL, self).delete(val)
+
+            if not to_balance is None:
+                to_balance.update_parent_heights()
+                fix_parent_unbalance_by_rotations(to_balance)
 
 
 def fix_parent_unbalance_by_rotations(parent):
-  while parent:
-    lc, rc = parent.left, parent.right
+    while parent:
+        lc, rc = parent.left, parent.right
 
-    if _is_right_right_case(lc, parent) or _is_right_right_case(rc, parent):
-      node = lc if _is_right_right_case(lc, parent) else rc
-      node.rotate_left()
+        if _is_right_right_case(lc, parent) or _is_right_right_case(rc, parent):
+            node = lc if _is_right_right_case(lc, parent) else rc
+            node.rotate_left()
 
-    elif _is_left_left_case(lc, parent) or _is_left_left_case(rc, parent):
+        elif _is_left_left_case(lc, parent) or _is_left_left_case(rc, parent):
 
-      node = lc if _is_left_left_case(lc, parent) else rc
-      node.rotate_right()
+            node = lc if _is_left_left_case(lc, parent) else rc
+            node.rotate_right()
 
-    elif _is_left_right_case(lc, parent) or _is_left_right_case(rc, parent):
+        elif _is_left_right_case(lc, parent) or _is_left_right_case(rc, parent):
 
-      node = lc if _is_left_right_case(lc, parent) else rc
-      node = lc.right
-      node.rotate_left()
-      node.rotate_right()
+            node = lc if _is_left_right_case(lc, parent) else rc
+            node = lc.right
+            node.rotate_left()
+            node.rotate_right()
 
-    elif _is_right_left_case(lc, parent) or _is_right_left_case(rc, parent):
+        elif _is_right_left_case(lc, parent) or _is_right_left_case(rc, parent):
 
-      node = lc if _is_right_left_case(lc, parent) else rc
-      node = node.left
-      node.rotate_right()
-      node.rotate_left()
+            node = lc if _is_right_left_case(lc, parent) else rc
+            node = node.left
+            node.rotate_right()
+            node.rotate_left()
 
-    parent = parent.parent
+        parent = parent.parent
+
 
 def _is_right_left_case(node, parent):
     return is_correct_balance_factor(node, parent, -1, 2)
+
+
 def _is_left_right_case(node, parent):
     return is_correct_balance_factor(node, parent, 1, -2)
- 
+
+
 def _is_left_left_case(node, parent):
     return is_correct_balance_factor(node, parent, -1, -2)
 
+
 def _is_right_right_case(node, parent):
     return is_correct_balance_factor(node, parent, 1, 2)
+
 
 def is_correct_balance_factor(node, parent, expected_bf, expected_par_bf):
     if not node or not parent:

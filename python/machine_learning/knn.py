@@ -10,8 +10,8 @@ def k_nearest_neighbor(dataset, querypt, k):
     get_classification = itemgetter(1)
 
     all_nearest = sorted(dataset, key=compose(dist_querypt, get_feature)
-    k_nearest = all_nearest[:k]
-    classifications = [get_classification(e) for e in k_nearest]
+    k_nearest=all_nearest[:k]
+    classifications=[get_classification(e) for e in k_nearest]
     return max(Counter(classifications))
 
 def compose(*args):

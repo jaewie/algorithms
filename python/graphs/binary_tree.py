@@ -3,16 +3,17 @@ import sys
 
 
 class Node(object):
+
     def __init__(self, d):
         self.data = d
         self.left = None
         self.right = None
         self.parent = None
-        
-        
+
+
 def in_order(root):
     '''Return the inorder traversal of node'''
-    
+
     if root:
         return in_order(root.left) + [root.data] + in_order(root.right)
     return []
@@ -20,7 +21,7 @@ def in_order(root):
 
 def bfs(root):
     '''Return a BFS of node iteratively'''
-    
+
     queue = Queue()
     queue.put(root)
     res = []
@@ -33,9 +34,10 @@ def bfs(root):
             queue.put(node.right)
     return res
 
+
 def dfs(root):
     '''Return a DFS of node iteratively'''
-    
+
     stack = [root]
     res = []
     while stack:
@@ -44,46 +46,52 @@ def dfs(root):
         if node.right:
             stack.append(node.right)
         if node.left:
-            stack.append(node.left)            
+            stack.append(node.left)
     return res
-    
+
+
 def is_BST(root):
     '''Return whether root is a binary search tree.'''
 
     lst = in_order(root)
     return all(lst[i] < lst[i + 1] for i in range(len(lst) - 1))
 
+
 def rec_DFS(node, lst=None):
     '''Return a DFS of node recursively'''
     return depth_lim_search(node, sys.maxint)
 
+
 def depth_lim_search(node, lim):
-  if not node or not lim:
-      return []
+    if not node or not lim:
+        return []
 
-  left = depth_lim_search(node.left, lim - 1)
-  right = depth_lim_search(node.right, lim - 1)
+    left = depth_lim_search(node.left, lim - 1)
+    right = depth_lim_search(node.right, lim - 1)
 
-  return [node.data] + left + right
+    return [node.data] + left + right
+
 
 def iterative_deepining_dfs(node, depth):
-  return reduce(list.__add__, [depth_lim_search(node, i) for i in range(depth + 1)])
+    return reduce(list.__add__, [depth_lim_search(node, i) for i in range(depth + 1)])
+
 
 def insert_into_BST(root, node):
     ''' Insert node into BST root. It's assumed all values are distinct'''
-    
+
     if is_leaf(root):
         if root.data < node.data:
             root.right = node
         else:
             root.left = node
-        node.parent = root        
+        node.parent = root
     else:
         if root.data < node.data:
             insert_into_BST(root.right, node)
         else:
             insert_into_BST(root.left, node)
-    
+
+
 def find_node(node, val):
     if node:
         if node.data < val:
@@ -93,11 +101,13 @@ def find_node(node, val):
         else:
             return node
 
+
 def is_leaf(node):
     ''' Return whether node is a leaf.'''
 
     return node and not node.left and not node.right
-    
+
+
 def height(node):
     '''Return the height of the tree rooted at node.'''
 

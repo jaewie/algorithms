@@ -2,6 +2,7 @@ from tree_node import TreeNode
 
 
 class SkewHeap(object):
+
     def __init__(self, root):
         self.root = root
 
@@ -15,6 +16,7 @@ class SkewHeap(object):
 
     def insert(self, val):
         self.root = _merge(self.root, TreeNode(val))
+
 
 def _merge(heap0, heap1):
     if not heap0:

@@ -1,67 +1,67 @@
 class Deque(object):
 
-  class Node(object):
-    def __init__(self, val):
-      self.val = val
-      self.next = None
-      self.prev = None
+    class Node(object):
 
-  def __init__(self):
-    self._head = None
-    self._tail = None
-    self._count = 0
-  
-  def append(self, val):
-    node = self.Node(val)
+        def __init__(self, val):
+            self.val = val
+            self.next = None
+            self.prev = None
 
-    if self._tail is None:
-      self._head = self._tail = node
-    else:
-      self._tail.next = node
-      node.prev = self._tail
-      self._tail = node
+    def __init__(self):
+        self._head = None
+        self._tail = None
+        self._count = 0
 
-    self._count += 1
- 
-  def appendleft(self, val):
-    node = self.Node(val)
+    def append(self, val):
+        node = self.Node(val)
 
-    if self._head is None:
-      self._head = self._tail = node
-    else:
-      self._head.prev = node
-      node.next = self._head
-      self._head = node
-    self._count += 1
+        if self._tail is None:
+            self._head = self._tail = node
+        else:
+            self._tail.next = node
+            node.prev = self._tail
+            self._tail = node
 
-  def pop(self):
-    if self._tail is None:
-      raise IndexError("pop from empty deque")
+        self._count += 1
 
-    item = self._tail
+    def appendleft(self, val):
+        node = self.Node(val)
 
-    if self._tail is self._head:
-      self._tail = self._head = None
-    else:
-      self._tail = self._tail.prev
-      self._tail.next = None
-    self._count -= 1
-    return item
+        if self._head is None:
+            self._head = self._tail = node
+        else:
+            self._head.prev = node
+            node.next = self._head
+            self._head = node
+        self._count += 1
 
+    def pop(self):
+        if self._tail is None:
+            raise IndexError("pop from empty deque")
 
-  def popleft(self):
-    if self._head is None:
-      raise IndexError("popleft from empty deque")
+        item = self._tail
 
-    item = self._head
-    if self._head is self._tail:
-      self._tail = self._head = None
-    else:
-      self._head = self._head.next
+        if self._tail is self._head:
+            self._tail = self._head = None
+        else:
+            self._tail = self._tail.prev
+            self._tail.next = None
+        self._count -= 1
+        return item
 
-    self._count -= 1
-    return item
+    def popleft(self):
+        if self._head is None:
+            raise IndexError("popleft from empty deque")
 
-  @property
-  def count(self):
-    return self._count
+        item = self._head
+        if self._head is self._tail:
+            self._tail = self._head = None
+        else:
+            self._head = self._head.next
+
+        self._count -= 1
+        return item
+
+    @property
+    def count(self):
+        return self._count
