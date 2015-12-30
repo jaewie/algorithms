@@ -145,3 +145,26 @@ int greater_than_zero(int x) {
 int greater_than_or_equal_to_zero(int x) {
     return ((unsigned) ~x) >> 31;
 }
+
+int sum_overflows(int x, int y, int c) {
+    // z is 0x8000000 if x and y have same signs, otherwsie 0
+    //
+    // If different signs, then no overflow.
+    // Otherwise:
+    // Case 1: x >= 0, and y >= 0
+    // Then returns 1 if (x - 2^31 + y + c) >= 0
+    //                            x + y + c >= 2^31
+    // and 0 otherwise
+    //
+    // Case 2: x < 0 and y < 0
+    // Then returns 1 if (x + 2^31 + y + c) < 0
+    //                            x + y + c < -2^31
+    // and 0 otherwise
+    int z = ~(x ^ y) & 0x8000000;
+    return z & ~(((x ^ z) + y + c) ^ y);
+}
+
+int division_overflows(int x, int y) {
+    // 0x80000000 is 1 << 31
+    return (y == 0) | (x == 0x80000000 & y == -1);
+}

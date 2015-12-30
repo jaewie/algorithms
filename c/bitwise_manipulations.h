@@ -18,3 +18,5 @@ int less_than_zero(int x);
 int less_than_or_equal_to_zero(int x);
 int greater_than_zero(int x);
 int greater_than_or_equal_to_zero(int x);
+int sum_overflows(int x, int y, int c);
+int division_overflows(int x, int y);
