@@ -121,6 +121,26 @@ def div(a, b):
     return 1 + div(a - b, b) if a >= b else 0
 
 
+def div(x, y):
+    # x / y is highest k s.t. y * k <= x
+    # Have k start at 1 and increase exponentially before it
+    # would cause y * k > x then start incrementing by one
+    if y == 0:
+        raise ZeroDivisionError("Division by zero")
+    if y > x:
+        return 0
+
+    k = 1
+
+    while y * (k << 1) <= x:
+        k <<= 1
+
+    while y * (k + 1) <= x:
+        k += 1
+
+    return k
+
+
 def long_division(x, y):
     if y == 0:
         raise ZeroDivisionError("Division by zero")
