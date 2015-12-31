@@ -108,10 +108,11 @@ def two_way_merge(left, right):
         return left
 
     l, r = left[0], right[0]
-    m = min(l, r)
-    left = left[1:] if l <= r else left
-    right = right[1:] if l >= r else right
-    return [m] + two_way_merge(left, right)
+
+    if l < r:
+        return [l] + two_way_merge(left[1:], right)
+    else:
+        return [r] + two_way_merge(left, right[1:])
 
 
 def flatten(lsts):
