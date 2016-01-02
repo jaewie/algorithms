@@ -168,3 +168,12 @@ int division_overflows(int x, int y) {
     // 0x80000000 is 1 << 31
     return (y == 0) | (x == 0x80000000 & y == -1);
 }
+
+int count_bits(int x) {
+    int total = 0;
+    while (x) {
+        x &= x - 1;
+        total++;
+    }
+    return total;
+}
