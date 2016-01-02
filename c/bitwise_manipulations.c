@@ -183,3 +183,15 @@ void swap(int *x, int *y) {
     *y = *x ^ *y;
     *x = *x ^ *y;
 }
+
+int branch(int a, int b, int cond) {
+    // cond is 0 or 1.
+
+    // if (cond) {
+    //     return a;
+    // } else {
+    //     return b;
+    // }
+
+    return (-cond & a) | ((-1 + cond) & b);
+}
