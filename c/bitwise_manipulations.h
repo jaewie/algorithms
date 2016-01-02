@@ -21,3 +21,4 @@ int greater_than_or_equal_to_zero(int x);
 int sum_overflows(int x, int y, int c);
 int division_overflows(int x, int y);
 int count_bits(int x);
+void swap(int *x, int *y);
