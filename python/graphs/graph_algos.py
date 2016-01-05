@@ -1,6 +1,6 @@
 from copy import deepcopy
 from graph import Graph
-from Queue import PriorityQueue
+from collection.priority_queue import PriorityQueue
 
 
 def kruskals(adj_list):
@@ -201,3 +201,33 @@ def topological_sort(prereq_task):
             if not task_prereq[t]:
                 todo.append(t)
     return order
+
+
+def shortest_paths(graph, start):
+    # Dijkstra's algorithm for single source shortest paths
+    # O(|V| log |V| + |E| log |V|)
+    paths = {node: None for node in graph}
+    distances = {node: float('inf') for node in graph}
+    distances[start] = 0
+
+    pq = PriorityQueue()
+    for node in graph:
+        if node == start:
+            pq.put(node, 0)
+        else:
+            pq.put(node, float('inf'))
+
+    while not pq.empty():
+        node, distance = pq.get()
+
+        for neighbour, edge_cost in graph[node]:
+            new_cost = distance + edge_cost
+
+            if new_cost < distances[neighbour]:
+                distances[neighbour] = new_cost
+                paths[neighbour] = node
+
+                pq.update(neighbour, new_cost)
+
+
+    return paths, distances
