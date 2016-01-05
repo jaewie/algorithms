@@ -32,6 +32,11 @@ class PriorityQueue(object):
     def empty(self):
         return not self.heap
 
+    def __bool__(self):
+        return not self.empty()
+
+    __nonzero__ = __bool__
+
     def _bubble_down(self, ind):
         length = len(self.heap)
         heap = self.heap
