@@ -1,5 +1,4 @@
 from random import choice
-import Queue
 
 
 def quick_sort(lst):
@@ -61,9 +60,8 @@ def cocktail_sort(lst):
 
 
 def selection_sort(lst):
-    for i, m in enumerate(range(len(lst))):
-        for j in range(i, len(lst)):
-            m = min(m, j, lambda x: lst[x])
+    for i in range(len(lst)):
+        m = min(range(i, len(lst)), key=lambda x: lst[x])
         lst[i], lst[m] = lst[m], lst[i]
     return lst
 
