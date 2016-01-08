@@ -61,7 +61,7 @@ def cocktail_sort(lst):
 
 def selection_sort(lst):
     for i in range(len(lst)):
-        m = min(range(i, len(lst)), key=lambda x: lst[x])
+        m = min(range(i, len(lst)), key=lst.__getitem__)
         lst[i], lst[m] = lst[m], lst[i]
     return lst
 
