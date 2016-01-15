@@ -12,6 +12,7 @@ Algorithms and Data Structures
 ### Combinatorics
 - Fisher-Yate's algorithm
 - Reservoir sampling
+- Fair coin with biased coin
 
 ### Computational Geometry
 - Closest pair algorithm
@@ -21,25 +22,35 @@ Algorithms and Data Structures
 - Vigenere cipher
 - Caesar cipher
 - One time pad
+- Adler32
+- Luhn
 
 ### Graphs
 - Trie
-- Binary Search Tree
+- Binary search tree
+- Interval tree
 - AVL Tree
+- Skew heap
 - Disjoint set
 - Kruskal's algorithm
 - Prim's algorithm
+- Dijkstra's algorithm
 - A*
 - BFS and DFS
 - Inorder traversal
 - Depth limited search
 - Deepening depth first search
+- Topological sort
 
 ### Interpreter
 - Shunting Yard algorithm
 
 ### Linked Lists
 - Floyd's cycle-finding algorithm
+
+### Machine learning
+- K nearest neighbor
+- Linear regression
 
 ### Numeric
 - Newton's method
@@ -49,12 +60,16 @@ Algorithms and Data Structures
 - Sieve's primes
 - Russian Peasant Multiplication algorithm
 - Karatsuba algorithm
+- Euclid's algorithm
+- Linear congruential generator
+
 
 ### Sequences
 - Kadane's algorithm
 - Quickselect
 - Median of medians
 - Dutch national flag
+- Binary search
 
 ### Simulation
 - Monte Carlo Method (for finding PI)
@@ -73,3 +88,4 @@ Algorithms and Data Structures
 
 ### Strings
 - Rabin-Karp algorithm
+- Knuth-Morris-Pratt
