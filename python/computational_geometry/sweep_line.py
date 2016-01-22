@@ -13,9 +13,8 @@ def max_intersecting_intervals(intervals):
     for point, interval in points:
         if is_starting_interval(point, interval):
             lines.add(interval)
-            if lines:
-                for line in lines:
-                    intersections[line] += 1
+            for line in lines:
+                intersections[line] += 1
         else:
             lines.remove(interval)
     return max(intersections, key=lambda x: intersections[x])
