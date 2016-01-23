@@ -29,6 +29,7 @@ Algorithms and Data Structures
 - Trie
 - Binary search tree
 - Interval tree
+- Merkle tree
 - AVL Tree
 - Skew heap
 - Disjoint set
