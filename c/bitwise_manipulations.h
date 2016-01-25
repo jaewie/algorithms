@@ -23,3 +23,6 @@ int division_overflows(int x, int y);
 int count_bits(int x);
 void swap(int *x, int *y);
 int branch(int a, int b, int cond);
+int is_odd(int x);
+int is_even(int x);
+int same_sign(int x, int y);

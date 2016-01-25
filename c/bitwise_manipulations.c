@@ -195,3 +195,15 @@ int branch(int a, int b, int cond) {
 
     return (-cond & a) | ((-1 + cond) & b);
 }
+
+int is_odd(int x) {
+    return x & 1;
+}
+
+int is_even(int x) {
+    return 1 - (x & 1);
+}
+
+int same_sign(int x, int y) {
+    return ((unsigned) ~(x ^ y)) >> 31;
+}
