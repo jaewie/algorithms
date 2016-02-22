@@ -1,5 +1,5 @@
 from random import randint
-from itertools import dropwhile
+from itertools import count
 
 
 def shuffle(lst):
@@ -67,14 +67,14 @@ def fair_coin(biased_coin):
 
 def biased_coin(p):
     '''Return 1 with probability p at 1 - p where 0 <= p <= 1'''
-    return next(dropwhile(lambda x: x != randint(0, 1), _binary_expansion(p)))
+    return next(x for x in _binary_expansion(p) if x == randint(0, 1))
 
 
 def _binary_expansion(p):
     '''Return binary expansion of 0 <= p <= 1'''
 
-    cur = total = 0
-    while True:
+    total = 0
+    for cur in count():
         current_digit = 1.0 / (2 << cur)
 
         if total + current_digit <= p:
@@ -82,5 +82,3 @@ def _binary_expansion(p):
             yield 1
         else:
             yield 0
-
-        cur += 1
