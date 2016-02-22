@@ -13,6 +13,7 @@ Algorithms and Data Structures
 - Fisher-Yate's algorithm
 - Reservoir sampling
 - Fair coin with biased coin
+- Biased coin with fair coin
 
 ### Computational Geometry
 - Closest pair algorithm
