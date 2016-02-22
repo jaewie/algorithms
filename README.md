@@ -1,6 +1,10 @@
 Algorithms and Data Structures
 ==========
 
+[![Build Status](https://travis-ci.org/jaewie/algorithms.svg?branch=master)](https://travis-ci.org/jaewie/algorithms)
+
+A list of various algorithm and structure implementations.
+
 ### Collection
 - Stack
 - Queue

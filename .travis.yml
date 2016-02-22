@@ -1,0 +1,6 @@
+language: python
+python:
+  - "2.7"
+env:
+  - TEST_DIR=python
+script: cd $TEST_DIR && PYTHONPATH= py.test

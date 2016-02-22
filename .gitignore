@@ -1,4 +1,6 @@
 *.pyc
 *.swp
-*DS_Store
+*.cache
 *.out
+.DS_Store
+python/algorithms.egg-info/
