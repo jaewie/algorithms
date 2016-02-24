@@ -217,7 +217,7 @@ def shortest_paths(graph, start):
         else:
             pq.put(node, float('inf'))
 
-    while not pq.empty():
+    while not pq.is_empty():
         node, distance = pq.get()
 
         for neighbour, edge_cost in graph[node]:

@@ -10,7 +10,7 @@ class PriorityQueue(object):
         self._bubble_up(len(self.heap) - 1)
 
     def get(self):
-        if self.empty():
+        if self.is_empty():
             raise IndexError("get from empty heap")
 
         self._swap(0, len(self.heap) - 1)
@@ -30,11 +30,11 @@ class PriorityQueue(object):
         else:
             self._bubble_down(location)
 
-    def empty(self):
+    def is_empty(self):
         return not self.heap
 
     def __bool__(self):
-        return not self.empty()
+        return not self.is_empty()
 
     __nonzero__ = __bool__
 
