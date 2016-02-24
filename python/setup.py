@@ -5,4 +5,4 @@ setup(name='algorithms',
       description='Algorithm and data structure implmentations',
       author='Jae Wie',
       author_email='wiejaehy@gmail.com',
-     )
+      )

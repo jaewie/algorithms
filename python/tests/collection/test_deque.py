@@ -1,5 +1,4 @@
 import unittest
-import collection
 from collection.deque import Deque
 
 

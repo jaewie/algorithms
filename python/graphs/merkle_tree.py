@@ -4,9 +4,9 @@ from hashlib import sha1
 
 
 class MerkleTree(BST):
+
     def __init__(self):
         super(MerkleTree, self).__init__()
-
 
     def insert(self, value):
         node = MerkleNode(value)
@@ -18,11 +18,9 @@ class MerkleTree(BST):
             parent.hash = _hash(parent.left, parent.right)
             parent = parent.parent
 
-
     @property
     def hash(self):
         return self.root.hash
-
 
     def __eq__(self, other_tree):
         return isinstance(other_tree, MerkleTree) and other_tree.hash == self.hash

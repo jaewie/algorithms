@@ -229,5 +229,4 @@ def shortest_paths(graph, start):
 
                 pq.update(neighbour, new_cost)
 
-
     return paths, distances

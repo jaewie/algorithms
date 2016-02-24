@@ -1,4 +1,5 @@
 class PriorityQueue(object):
+
     def __init__(self):
         self.heap = []
         self.locations = {}

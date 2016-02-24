@@ -2,6 +2,7 @@ from tree_node import TreeNode
 
 
 class QuadTreeNode(TreeNode):
+
     def __init__(self, top_left, top_right):
         super(IntervalNode, self).__init__((top_left, top_right))
 
