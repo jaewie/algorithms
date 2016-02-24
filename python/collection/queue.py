@@ -36,3 +36,14 @@ class Queue(object):
 
     def peek(self):
         return self._head
+
+    def is_empty(self):
+        return self._head is None
+
+    def __len__(self):
+        count = 0
+        head = self._head
+        while head:
+            count += 1
+            head = head.next
+        return count
