@@ -26,12 +26,6 @@ class DynamicArray(object):
         self._array[self._size] = ele
         self._size += 1
 
-    def reverse(self, start, end):
-        while start < end:
-            self[start], self[end] = self[start], self[end]
-            start += 1
-            end -= 1
-
     def find(self, ele):
         for i in range(self._size):
             if self[i] == ele:
@@ -45,13 +39,22 @@ class DynamicArray(object):
         self._size -= 1
         item = self._array[self._size]
 
-        if self._size > self._min_capacity and self._size // float(self._capacity) < 0.25:
+        if self._size > self._min_capacity and self._size / float(self._capacity) < 0.25:
             self._capacity /= 2
             self._resize(self._capacity)
         return item
+
+    def is_empty(self):
+        return not len(self)
 
     def _resize(self, new_capacity):
         new_ary = zeros(new_capacity)
         for i in range(self._size):
             new_ary[i] = self._array[i]
         self._array = new_ary
+
+    def __len__(self):
+        return self._size
+
+    def __bool__(self):
+        return not self.is_empty()
