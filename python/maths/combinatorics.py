@@ -66,7 +66,7 @@ def fair_coin(biased_coin):
 
 
 def biased_coin(p):
-    '''Return 1 with probability p at 1 - p where 0 <= p <= 1'''
+    '''Return 1 with probability p, and 0 at 1 - p where 0 <= p <= 1'''
     return next(x for x in _binary_expansion(p) if x == randint(0, 1))
 
 
