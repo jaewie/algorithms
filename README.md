@@ -4,7 +4,23 @@ Algorithms and Data Structures
 [![Build Status](https://travis-ci.org/jaewie/algorithms.svg?branch=master)](https://travis-ci.org/jaewie/algorithms)
 [![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat)](/LICENSE)
 
-A list of various algorithm and structure implementations.
+**A list of various algorithm and structure implementations.**
+
+**Table of Contents**
+
+- [Collection](#collection)
+- [Combinatorics](#status)
+- [Computational Geometry](#computational-geometry)
+- [Cryptographic](#cryptographic)
+- [Graphs](#graphs)
+- [Interpreter](#interpreter)
+- [Linked Lists](#linked-lists)
+- [Machine learning](#machine-learning)
+- [Numeric](#numeric)
+- [Sequences](#sequences)
+- [Simulation](#simulation)
+- [Sorts](#sorts)
+- [Strings](#strings)
 
 ### Collection
 - Stack
