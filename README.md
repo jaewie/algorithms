@@ -8,19 +8,21 @@ Algorithms and Data Structures
 
 **Table of Contents**
 
-- [Collection](#collection)
-- [Combinatorics](#status)
-- [Computational Geometry](#computational-geometry)
-- [Cryptographic](#cryptographic)
-- [Graphs](#graphs)
-- [Interpreter](#interpreter)
-- [Linked Lists](#linked-lists)
-- [Machine learning](#machine-learning)
-- [Numeric](#numeric)
-- [Sequences](#sequences)
-- [Simulation](#simulation)
-- [Sorts](#sorts)
-- [Strings](#strings)
+- [Implementations](#collection)
+   - [Collection](#collection)
+   - [Combinatorics](#combinatorics)
+   - [Computational geometry](#computational-geometry)
+   - [Cryptographic](#cryptographic)
+   - [Graphs](#graphs)
+   - [Interpreter](#interpreter)
+   - [Linked lists](#linked-lists)
+   - [Machine learning](#machine-learning)
+   - [Numeric](#numeric)
+   - [Sequences](#sequences)
+   - [Simulation](#simulation)
+   - [Sorts](#sorts)
+   - [Strings](#strings)
+- [For future](#for-future)
 
 ### Collection
 - Stack
@@ -68,7 +70,7 @@ Algorithms and Data Structures
 ### Interpreter
 - Shunting Yard algorithm
 
-### Linked Lists
+### Linked lists
 - Floyd's cycle-finding algorithm
 
 ### Machine learning
@@ -112,3 +114,11 @@ Algorithms and Data Structures
 ### Strings
 - Rabin-Karp algorithm
 - Knuth-Morris-Pratt
+
+
+### For future
+- [ ] Spell checker
+- [ ] PageRank
+- [ ] Simulated annealing
+- [ ] Huffman encoding
+- [ ] Quadtree
