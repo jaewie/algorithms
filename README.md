@@ -15,6 +15,7 @@ Algorithms and Data Structures
    - [Cryptographic](#cryptographic)
    - [Graphs](#graphs)
    - [Interpreter](#interpreter)
+   - [Intractable](#intractable)
    - [Linked lists](#linked-lists)
    - [Machine learning](#machine-learning)
    - [Numeric](#numeric)
@@ -70,6 +71,9 @@ Algorithms and Data Structures
 ### Interpreter
 - Shunting Yard algorithm
 
+### Intractable
+- Simulated annealing (Traveling Salesman Problem)
+
 ### Linked lists
 - Floyd's cycle-finding algorithm
 
@@ -119,6 +123,6 @@ Algorithms and Data Structures
 ### For future
 - [ ] Spell checker
 - [ ] PageRank
-- [ ] Simulated annealing
+- [x] Simulated annealing
 - [ ] Huffman encoding
 - [ ] Quadtree
