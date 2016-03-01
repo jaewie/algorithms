@@ -67,6 +67,7 @@ Algorithms and Data Structures
 - Depth limited search
 - Deepening depth first search
 - Topological sort
+- Huffman encoding
 
 ### Interpreter
 - Shunting Yard algorithm
@@ -124,5 +125,5 @@ Algorithms and Data Structures
 - [ ] Spell checker
 - [ ] PageRank
 - [x] Simulated annealing
-- [ ] Huffman encoding
+- [x] Huffman encoding
 - [ ] Quadtree

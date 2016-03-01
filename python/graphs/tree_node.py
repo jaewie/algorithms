@@ -1,10 +1,10 @@
 class TreeNode(object):
 
-    def __init__(self, value):
+    def __init__(self, value, left=None, right=None, parent=None):
         self.val = value
-        self.left = None
-        self.right = None
-        self.parent = None
+        self.left = left
+        self.right = right
+        self.parent = parent
 
     def has_parent(self):
         return not self.parent is None
