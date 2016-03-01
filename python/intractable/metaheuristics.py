@@ -1,4 +1,4 @@
-from random import randint, shuffle, random
+from random import randint, shuffle, random, sample
 from math import exp, sqrt
 from itertools import islice
 
@@ -34,14 +34,13 @@ def move_tsp(state):
     return cities, move_tour(tour)
 
 
+# Taken from: http://stackoverflow.com/a/35712695/1284735
 def make_random_cities(num_cities, max_x, max_y):
     assert(num_cities <= (max_x + 1) * (max_y + 1))
 
-    cities = set()
-    while len(cities) < num_cities:
-        x, y = randint(0, max_x), randint(0, max_y)
-        cities.add((x, y))
-    return list(cities)
+    max_xy = (max_x + 1) * (max_y + 1)
+    xys = sample(range(max_xy), num_cities)
+    return [divmod(xy, max_y + 1) for xy in xys]
 
 
 def get_random_tour(cities):
