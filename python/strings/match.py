@@ -6,7 +6,7 @@ def substr(s, sub):
         prev_char = s[i - 1] if i > 0 else None
         check_hash = roll_hash(check, prev_char, check_hash)
 
-        if roll_hash(check), check == sub_hash, sub:
+        if (roll_hash(check), check) == (sub_hash, sub):
             return i
     return -1
 
