@@ -207,3 +207,11 @@ int is_even(int x) {
 int same_sign(int x, int y) {
     return ((unsigned) ~(x ^ y)) >> 31;
 }
+
+int rotate_left(int x, int n) {
+    return (x << n) | (((unsigned) x) >> (32 - n));
+}
+
+int rotate_right(int x, int n) {
+    return (((unsigned) x) >> n) | (x << (32 - n));
+}
