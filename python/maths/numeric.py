@@ -3,6 +3,7 @@ from math import sqrt, pi
 from fractions import Fraction
 from utils import cache, change_type
 from collections import defaultdict, Counter
+import numbers
 
 
 def sqroot(target, epsilon=10e-4):
@@ -14,7 +15,7 @@ def sqroot(target, epsilon=10e-4):
 
 def is_prime(n, runs=10):
     '''Return whether n is prime. False positives are possible with the
-    probability of (1 // 2) ** runs'''
+    probability of (1 / 2.0) ** runs'''
 
     # Fermat's primality test
     f_test = lambda a, n: a ** (n - 1) % n == 1
@@ -32,7 +33,7 @@ def exp(a, n):
     '''Return a to the power of n'''
 
     if n < 0:
-        return 1.0 // exp(a, -n)
+        return 1.0 / exp(a, -n)
     elif n == 0:
         return 1
     elif n == 1:
@@ -40,7 +41,7 @@ def exp(a, n):
 
     # Exponentiation by squaring
     is_even = lambda num: num % 2 == 0
-    return exp(a * a, n // 2) if is_even(n) else a * exp(a * a, n // 2)
+    return exp(a * a, n / 2) if is_even(n) else a * exp(a * a, n / 2)
 
 
 def generate_primes(n):
@@ -62,8 +63,8 @@ def get_pi():
 
     n = 200
     # Bailey-Borwein-Plouffe formula
-    p = lambda k: 1.0 // (16 ** k) * (4.0 // (8 * k + 1) - 2.0 //
-                                      (8 * k + 4) - 1.0 // (8 * k + 5) - 1.0 // (8 * k + 6))
+    p = lambda k: 1.0 / (16 ** k) * (4.0 / (8 * k + 1) - 2.0 /
+                                      (8 * k + 4) - 1.0 / (8 * k + 5) - 1.0 / (8 * k + 6))
 
     return sum(p(i) for i in range(n))
 
@@ -75,7 +76,7 @@ def get_pi(num_pts=100000):
     all_pts = [(random(), random()) for _ in range(num_pts)]
     pts_inside_circle = [(x, y)
                          for x, y in all_pts if dist_from_origin(x, y) <= 1]
-    return 4.0 * len(pts_inside_circle) // len(all_pts)
+    return 4.0 * len(pts_inside_circle) / len(all_pts)
 
 
 def mult(a, b):
@@ -85,7 +86,7 @@ def mult(a, b):
         if b % 2 != 0:
             res += a
         a += a
-        b //= 2
+        b /= 2
     return res
 
 
@@ -98,18 +99,18 @@ def mult(x, y):
     n = max(x_digs, y_digs)
     n = n if n % 2 == 0 else n - 1
 
-    a, b = x // (10 ** (n // 2)), x % (10 ** (n // 2))
-    c, d = y // (10 ** (n // 2)), y % (10 ** (n // 2))
+    a, b = x / (10 ** (n / 2)), x % (10 ** (n / 2))
+    c, d = y / (10 ** (n / 2)), y % (10 ** (n / 2))
 
     ac = mult(a, c)
     bd = mult(b, d)
     ad_plus_bc = mult(a + b, c + d) - ac - bd
 
-    return 10 ** n * ac + 10 ** (n // 2) * (ad_plus_bc) + bd
+    return 10 ** n * ac + 10 ** (n / 2) * (ad_plus_bc) + bd
 
 
 def num_digits(num):
-    return 1 + num_digits(num // 10) if num else 1
+    return 1 + num_digits(num / 10) if num else 1
 
 
 def div(a, b):
@@ -192,8 +193,8 @@ def derivative(f, h=10e-4):
 def exp_float(num, k, limit_denom=5):
     '''Return num raises to power of k where k is some floating point number.'''
 
-    # result = num ^ k = num ^ (m // n) where k = m // n
-    #        = (num ^ m) ^ (1 // n)
+    # result = num ^ k = num ^ (m / n) where k = m / n
+    #        = (num ^ m) ^ (1 / n)
 
     fraction = Fraction(k).limit_denominator(limit_denom)
     numer, denom = fraction.numerator, fraction.denominator
@@ -220,26 +221,26 @@ def sin(x, terms=25):
         is_positive = i % 2 == 0
         sign = 1 if is_positive else -1
         degree = i * 2 + 1
-        return sign * (float(x ** degree) // factorial(degree))
+        return sign * (float(x ** degree) / factorial(degree))
 
     return sum(get_ith_term_value(x, i) for i in range(terms))
 
 
 def cos(x):
-    return sin(pi // 2 - x)
+    return sin(pi / 2 - x)
 
 
 def tan(x):
-    return sin(x) // cos(x)
+    return sin(x) / cos(x)
 
 
 def exp(x, terms=25):
-    get_ith_term = lambda x, i: float(x ** i) // factorial(i)
+    get_ith_term = lambda x, i: float(x ** i) / factorial(i)
     return sum(get_ith_term(x, i) for i in range(terms))
 
 
 def lcm(a, b):
-    return a * b // gcd(a, b)
+    return a * b / gcd(a, b)
 
 
 def random_generator_factory(m, a, c):
@@ -262,9 +263,27 @@ def factors(num, cur=2):
         return Counter({num})
 
     divides = num % cur == 0
-    return Counter({cur}) + factors(num // cur) if divides else factors(num, cur + 1)
+    return Counter({cur}) + factors(num / cur) if divides else factors(num, cur + 1)
 
 
 @cache
 def factorial(i):
     return i * factorial(i - 1) if i > 1 else 1
+
+
+def sum(*nums):
+    '''Return the sum of numbers.'''
+    # Kahan summation algorithm
+
+    # approximate total - accurate total
+    # i.e. amount of overestimation if positive
+    #      amount of underestimation if negative
+    c = 0.0
+    total = 0.0
+
+    for num in nums:
+        y = num - c
+        temp = total + y
+        c = (temp - total) - y
+        total = temp
+    return total

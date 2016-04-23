@@ -92,6 +92,7 @@ Algorithms and Data Structures
 - Karatsuba algorithm
 - Euclid's algorithm
 - Linear congruential generator
+- Kahan summation algorithm
 
 
 ### Sequences
