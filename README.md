@@ -12,6 +12,7 @@ Algorithms and Data Structures
    - [Collection](#collection)
    - [Combinatorics](#combinatorics)
    - [Computational geometry](#computational-geometry)
+   - [Concurrency](#concurrency)
    - [Cryptographic](#cryptographic)
    - [Graphs](#graphs)
    - [Interpreter](#interpreter)
@@ -42,6 +43,9 @@ Algorithms and Data Structures
 ### Computational Geometry
 - Closest pair algorithm
 - Sweep line algorithm
+
+### Concurrency
+- Producer–consumer problem
 
 ### Cryptographic
 - Vigenere cipher
