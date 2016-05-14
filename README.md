@@ -45,6 +45,7 @@ Algorithms and Data Structures
 - Sweep line algorithm
 
 ### Concurrency
+- Barrier
 - Producer–consumer problem
 
 ### Cryptographic
