@@ -20,7 +20,7 @@ def partition(lst, p):
     j = 0  # top of middle part
     k = len(lst) - 1  # bottom of top part
 
-    while j < k:
+    while j <= k:
 
         if lst[j] < p:
             lst[j], lst[i] = lst[i], lst[j]
