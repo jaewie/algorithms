@@ -1,5 +1,6 @@
 from random import choice
 from functools import reduce
+from heapq import heappush, heappop, heapify
 
 
 def max_subarray(lst):
@@ -94,11 +95,20 @@ def binary_search(lst, target):
 
 
 def kway_merge(lsts):
-    if len(lsts) <= 1:
-        return lsts[0] if lsts else []
-    mid = len(lsts) // 2
-    left, right = kway_merge(lsts[:mid]), kway_merge(lsts[mid:])
-    return two_way_merge(left, right)
+    heap = [(lst[0], i, 0) for i, lst in enumerate(lsts)]
+    heapify(heap)
+    result = []
+
+    while heap:
+        priority, lst_ind, ele_ind = heappop(heap)
+        result.append(priority)
+
+        if ele_ind + 1 < len(lsts[lst_ind]):
+            ele_ind += 1
+            priority = lsts[lst_ind][ele_ind]
+            heappush(heap, (priority, lst_ind, ele_ind))
+
+    return result
 
 
 def two_way_merge(left, right):
