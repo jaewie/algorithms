@@ -1,4 +1,4 @@
-from threading import Semaphore, Thread
+from threading import Semaphore
 
 
 class Barrier(object):
@@ -33,16 +33,23 @@ class Barrier(object):
         self.turnstile1.acquire()
         self.turnstile1.release()
 
-    def __run(self):
-        self.before_barrier_func()
-        self.phase1()
-        self.after_barrier_func()
-        self.phase2()
 
-    def run(self):
-        threads = [Thread(target=self.__run) for _ in range(self.num_threads)]
-        for t in threads:
-            t.start()
+class LightSwitch(object):
+    def __init__(self):
+        self.count = 0
+        self.mutex = Semaphore(1)
 
-        for t in threads:
-            t.join()
+    def lock(self, semaphore):
+        self.mutex.acquire()
+        self.count += 1
+        if self.count == 1:
+            semaphore.acquire()
+        self.mutex.release()
+
+
+    def unlock(self, semaphore):
+        self.mutex.acquire()
+        self.count -= 1
+        if self.count == 0:
+            semaphore.release()
+        self.mutex.release()
