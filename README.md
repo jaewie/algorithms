@@ -46,7 +46,7 @@ Algorithms and Data Structures
 
 ### Concurrency
 - Barrier
-- LightSwitch
+- Light switch
 - Producer–consumer problem
 
 ### Cryptographic
