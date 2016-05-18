@@ -48,6 +48,7 @@ Algorithms and Data Structures
 - Barrier
 - Light switch
 - Producer–consumer problem
+- Readers–writers problem (with writer priority)
 
 ### Cryptographic
 - Vigenere cipher
