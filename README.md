@@ -46,6 +46,7 @@ Algorithms and Data Structures
 
 ### Concurrency
 - Barrier
+- Dining philosophers problem
 - Light switch
 - Producer–consumer problem
 - Readers–writers problem (with writer priority)
