@@ -4,7 +4,7 @@ Algorithms and Data Structures
 [![Build Status](https://travis-ci.org/jaewie/algorithms.svg?branch=master)](https://travis-ci.org/jaewie/algorithms)
 [![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat)](/LICENSE)
 
-**A list of various algorithm and structure implementations.**
+**Implementations of various algorithms and data structures.**
 
 **Table of Contents**
 
@@ -47,6 +47,7 @@ Algorithms and Data Structures
 ### Concurrency
 - Barrier
 - Dining philosophers problem
+- Dining savages problem
 - Light switch
 - Producer–consumer problem
 - Readers–writers problem (with writer priority)
