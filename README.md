@@ -137,3 +137,4 @@ Algorithms and Data Structures
 - [x] Simulated annealing
 - [x] Huffman encoding
 - [ ] Quadtree
+- [ ] Apriori algorithm
