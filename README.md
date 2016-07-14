@@ -77,6 +77,7 @@ Algorithms and Data Structures
 - Deepening depth first search
 - Topological sort
 - Huffman encoding
+- [Segment tree](python/graphs/segment_tree.py)
 
 ### Interpreter
 - Shunting Yard algorithm
