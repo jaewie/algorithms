@@ -27,18 +27,18 @@ Algorithms and Data Structures
 - [For future](#for-future)
 
 ### Collection
-- Stack
-- Queue
-- Priority queue
-- Set
 - Deque
 - Dynamic array
+- Priority queue
+- Queue
+- Set
+- Stack
 
 ### Combinatorics
+- Biased coin with fair coin
+- Fair coin with biased coin
 - Fisher-Yate's algorithm
 - Reservoir sampling
-- Fair coin with biased coin
-- Biased coin with fair coin
 
 ### Computational Geometry
 - Closest pair algorithm
@@ -53,31 +53,31 @@ Algorithms and Data Structures
 - Readers–writers problem (with writer priority)
 
 ### Cryptographic
-- Vigenere cipher
-- Caesar cipher
-- One time pad
 - Adler32
+- Caesar cipher
 - Luhn
+- One time pad
+- Vigenere cipher
 
 ### Graphs
-- Trie
-- Binary search tree
-- Interval tree
-- Merkle tree
-- AVL Tree
-- Skew heap
-- Disjoint set
-- Kruskal's algorithm
-- Prim's algorithm
-- Dijkstra's algorithm
 - A*
+- AVL Tree
 - BFS and DFS
-- Inorder traversal
-- Depth limited search
+- Binary search tree
 - Deepening depth first search
-- Topological sort
+- Depth limited search
+- Dijkstra's algorithm
+- Disjoint set
 - Huffman encoding
+- Inorder traversal
+- Interval tree
+- Kruskal's algorithm
+- Merkle tree
+- Prim's algorithm
 - [Segment tree](python/graphs/segment_tree.py)
+- Skew heap
+- Topological sort
+- Trie
 
 ### Interpreter
 - Shunting Yard algorithm
@@ -93,49 +93,47 @@ Algorithms and Data Structures
 - Linear regression
 
 ### Numeric
-- Newton's method
-- Fermat's primality test
 - Euclid's algorithm
 - Fast exponentiation
-- Sieve's primes
-- Russian Peasant Multiplication algorithm
-- Karatsuba algorithm
-- Euclid's algorithm
-- Linear congruential generator
+- Fermat's primality test
 - Kahan summation algorithm
+- Karatsuba algorithm
+- Linear congruential generator
+- Newton's method
+- Russian Peasant Multiplication algorithm
+- Sieve's primes
 
 
 ### Sequences
-- Kadane's algorithm
-- Quickselect
-- Median of medians
-- Dutch national flag
 - Binary search
+- Dutch national flag
+- Kadane's algorithm
+- Median of medians
+- Quickselect
 
 ### Simulation
 - Monte Carlo Method (for finding PI)
 
 ### Sorts
-- Quick sort
-- Merge sort
-- Insertion sort
-- Selection sort
-- Radix sort
-- Heap sort
 - Bubble sort
-- Counting sort
 - Bucket sort
+- Counting sort
+- Heap sort
+- Insertion sort
+- Merge sort
+- Quick sort
+- Radix sort
+- Selection sort
 - Stack sort
 
 ### Strings
-- Rabin-Karp algorithm
 - Knuth-Morris-Pratt
-
+- Rabin-Karp algorithm
 
 ### For future
-- [ ] Spell checker
 - [ ] PageRank
-- [x] Simulated annealing
-- [x] Huffman encoding
 - [ ] Quadtree
+- [ ] Spell checker
+- [x] Huffman encoding
+- [x] Simulated annealing
 - [ ] Apriori algorithm
