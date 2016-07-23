@@ -123,7 +123,7 @@ Algorithms and Data Structures
 - Merge sort
 - Quick sort
 - Radix sort
-- Selection sort
+- [Selection sort](python/sequences/comparison_sorts.py)
 - Stack sort
 
 ### Strings

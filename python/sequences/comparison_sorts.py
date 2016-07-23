@@ -1,4 +1,6 @@
 from random import choice
+from operator import getitem
+from functools import partial
 
 
 def quick_sort(lst):
@@ -61,7 +63,7 @@ def cocktail_sort(lst):
 
 def selection_sort(lst):
     for i in range(len(lst)):
-        m = min(range(i, len(lst)), key=lst.__getitem__)
+        m = min(range(i, len(lst)), key=partial(getitem, lst))
         lst[i], lst[m] = lst[m], lst[i]
     return lst
 
