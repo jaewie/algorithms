@@ -1,49 +1,29 @@
 class Queue(object):
 
     def __init__(self):
-        self._head = None
-        self._tail = None
-
-    class Node(object):
-
-        def __init__(self, val):
-            self.val = val
-            self.next = None
-            self.prev = None
+        self.front = []
+        self.back = []
 
     def enqueue(self, val):
-        node = self.Node(val)
-
-        if not self._tail:
-            self._head = self._tail = node
-        else:
-            self._tail.next = node
-            node.prev = self._tail
-            self._tail = self._tail.next
+        self.back.append(val)
 
     def dequeue(self):
-        if not self._head:
+        if self.is_empty():
             raise IndexError("Dequeue from empty queue")
 
-        node = self.peek()
-
-        if self._head == self._tail:
-            self._head = self._tail = None
-        else:
-            self._head = self._head.next
-            self._head.prev = None
-        return node.val
+        if not self.front:
+            while self.back:
+                self.front.append(self.back.pop())
+        return self.front.pop()
 
     def peek(self):
-        return self._head
+        if self.is_empty():
+            raise IndexError("Dequeue from empty queue")
+
+        return self.front[-1]
 
     def is_empty(self):
-        return self._head is None
+        return len(self) == 0
 
     def __len__(self):
-        count = 0
-        head = self._head
-        while head:
-            count += 1
-            head = head.next
-        return count
+        return len(self.front) + len(self.back)

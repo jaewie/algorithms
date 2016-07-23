@@ -30,7 +30,7 @@ Algorithms and Data Structures
 - Deque
 - Dynamic array
 - Priority queue
-- Queue
+- [Queue](python/collection/queue.py)
 - Set
 - Stack
 
@@ -131,9 +131,9 @@ Algorithms and Data Structures
 - Rabin-Karp algorithm
 
 ### For future
+- [ ] Apriori algorithm
 - [ ] PageRank
 - [ ] Quadtree
 - [ ] Spell checker
 - [x] Huffman encoding
 - [x] Simulated annealing
-- [ ] Apriori algorithm
