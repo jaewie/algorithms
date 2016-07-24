@@ -1,6 +1,5 @@
-from functools import partial, reduce
 from operator import itemgetter
-from collections import Counter
+from functools import partial
 
 
 def k_nearest_neighbor(dataset, querypt, k):
@@ -9,15 +8,9 @@ def k_nearest_neighbor(dataset, querypt, k):
     get_feature = itemgetter(0)
     get_classification = itemgetter(1)
 
-    all_nearest = sorted(dataset, key=compose(dist_querypt, get_feature)
-    k_nearest=all_nearest[:k]
-    classifications=[get_classification(e) for e in k_nearest]
-    return max(Counter(classifications))
+    all_nearest = sorted(dataset, key=lambda x: dist_querypt(get_feature(x)))
+    k_nearest = all_nearest[:k]
+    k_classifications = [get_classification(e) for e in k_nearest]
 
-def compose(*args):
-    def _compose(f, g):
-        def wrapper(*args, **kwargs):
-            return f(g(*args, **kwargs))
-        return wrapper
-
-    return reduce(_compose, args)
+    # Most frequent classification in k classifications
+    return max(set(k_classifications), key=k_classifications.count)
