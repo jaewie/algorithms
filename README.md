@@ -22,7 +22,7 @@ Algorithms and Data Structures
    - [Numeric](#numeric)
    - [Sequences](#sequences)
    - [Simulation](#simulation)
-   - [Sorts](#sorts)
+   - [Sort](#sort)
    - [Strings](#strings)
 - [For future](#for-future)
 
@@ -114,17 +114,17 @@ Algorithms and Data Structures
 ### Simulation
 - Monte Carlo Method (for finding PI)
 
-### Sorts
-- Bubble sort
-- Bucket sort
-- Counting sort
-- Heap sort
-- Insertion sort
-- Merge sort
-- Quick sort
-- Radix sort
-- [Selection sort](python/sequences/comparison_sorts.py)
-- Stack sort
+### Sort
+- [Bubble sort](python/sequences/sort.py)
+- [Bucket sort](python/sequences/sort.py)
+- [Counting sort](python/sequences/sort.py)
+- [Heap sort](python/sequences/sort.py)
+- [Insertion sort](python/sequences/sort.py)
+- [Merge sort](python/sequences/sort.py)
+- [Quick sort](python/sequences/sort.py)
+- [Radix sort](python/sequences/sort.py)
+- [Selection sort](python/sequences/sort.py)
+- [Stack sort](python/sequences/sort.py)
 
 ### Strings
 - Knuth-Morris-Pratt

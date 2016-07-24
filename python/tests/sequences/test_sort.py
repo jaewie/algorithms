@@ -1,5 +1,5 @@
 import unittest
-from sequences.comparison_sorts import selection_sort
+from sequences.sort import selection_sort
 
 
 class TestComparisonSorts(unittest.TestCase):
