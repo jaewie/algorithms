@@ -1,3 +1,6 @@
+ENDS_HERE = '__ENDS_HERE'
+
+
 class Trie(object):
 
     def __init__(self):
@@ -5,10 +8,14 @@ class Trie(object):
 
     def insert(self, text):
         trie = self._trie
-        for char in text:
+        for i, char in enumerate(text):
             if char not in trie:
                 trie[char] = {}
+
             trie = trie[char]
+
+            if i == len(text) - 1:
+                trie[ENDS_HERE] = True
 
     def exists(self, text):
         trie = self._trie
@@ -16,17 +23,21 @@ class Trie(object):
             if char not in trie:
                 return False
             trie = trie[char]
-        return True
 
-    def __str__(self):
-        return ', '.join(self.__get_strs(self._trie))
+        return ENDS_HERE in trie
 
-    def __get_strs(self, d):
-        if not d:
-            return ['']
+    def elements(self):
+        return self._elements(self._trie)
 
-        res = []
-        for char in d:
-            child_res = self.__get_strs(d[char])
-            res.extend([char + s for s in child_res])
-        return res
+    def _elements(self, d):
+        result = []
+
+        for c, v in d.items():
+            if c == ENDS_HERE:
+                subresult = ['']
+            else:
+                subresult = [c + s for s in self._elements(v)]
+
+            result.extend(subresult)
+
+        return result
