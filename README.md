@@ -20,6 +20,7 @@ Algorithms and Data Structures
    - [Linked lists](#linked-lists)
    - [Machine learning](#machine-learning)
    - [Numeric](#numeric)
+   - [Probabilistic](#probabilistic)
    - [Sequences](#sequences)
    - [Simulation](#simulation)
    - [Sort](#sort)
@@ -27,6 +28,7 @@ Algorithms and Data Structures
 - [For future](#for-future)
 
 ### Collection
+- [Bit array](python/collection/bit_array.py)
 - [Deque](python/collection/deque.py)
 - [Dynamic array](python/collection/dynamic_array.py)
 - [Priority queue](python/collection/priority_queue.py)
@@ -103,6 +105,9 @@ Algorithms and Data Structures
 - [Newton's method](python/maths/numeric.py)
 - [Russian Peasant Multiplication algorithm](python/maths/numeric.py)
 - [Sieve's primes](python/maths/numeric.py)
+
+### Probabilistic
+- [Bloom filter](python/probabilistic/bloom_filter.py)
 
 ### Sequences
 - [Binary search](python/sequences/arrays.py)
