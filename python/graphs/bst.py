@@ -70,14 +70,14 @@ def _delete(node, val):
         node.left = _delete(node.left, val)
     elif val > node.val:
         node.right = _delete(node.right, val)
+    # val == node.val
+    elif not node.right:
+        return node.left
+    elif not node.left:
+        return node.right
+    elif is_leaf(node):
+        return None
     else:
-        if not node.right:
-            return node.left
-        elif not node.left:
-            return node.right
-        elif is_leaf(node):
-            return None
-        else:
-            node.val = find_max(node.left).val
-            node.left = _delete(node.left, node.val)
+        node.val = find_max(node.left).val
+        node.left = _delete(node.left, node.val)
     return node
