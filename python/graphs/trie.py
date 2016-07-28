@@ -8,14 +8,12 @@ class Trie(object):
 
     def insert(self, text):
         trie = self._trie
-        for i, char in enumerate(text):
+        for char in text:
             if char not in trie:
                 trie[char] = {}
-
             trie = trie[char]
 
-            if i == len(text) - 1:
-                trie[ENDS_HERE] = True
+        trie[ENDS_HERE] = True
 
     def exists(self, text):
         trie = self._trie
