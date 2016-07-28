@@ -14,6 +14,7 @@ Algorithms and Data Structures
    - [Computational geometry](#computational-geometry)
    - [Concurrency](#concurrency)
    - [Cryptographic](#cryptographic)
+   - [Data mining](#data-mining)
    - [Graphs](#graphs)
    - [Interpreter](#interpreter)
    - [Intractable](#intractable)
@@ -60,6 +61,9 @@ Algorithms and Data Structures
 - [Luhn](python/checksums/luhn.py)
 - [One time pad](python/crypto/ciphers.py)
 - [Vigenere cipher](python/crypto/ciphers.py)
+
+### Data mining
+- [Apriori algorithm](python/data_mining/apriori.py)
 
 ### Graphs
 - [A*](python/graphs/graph_algos.py)
@@ -136,7 +140,7 @@ Algorithms and Data Structures
 - [Rabin-Karp algorithm](python/strings/match.py)
 
 ### For future
-- [ ] Apriori algorithm
+- [x] Apriori algorithm
 - [ ] PageRank
 - [ ] Quadtree
 - [ ] Spell checker
