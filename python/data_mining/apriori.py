@@ -31,7 +31,7 @@ def apriori(transactions, min_support_count):
         # Find new candidate subsets
         new_candidate = {}
         for itemset in new_filtered_itemset_combos:
-            count = sum(set(itemset).issubset(set(transaction_itemset))
+            count = sum(set(itemset).issubset(transaction_itemset)
                         for transaction_itemset in transactions.values())
 
             new_candidate[itemset] = count
