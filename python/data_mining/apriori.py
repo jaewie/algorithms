@@ -2,9 +2,9 @@ from collections import Counter
 import itertools
 
 
-def apriori(transactions, min_supprt_count):
+def apriori(transactions, min_support_count):
     # TODO: refactor and optimize
-    item_counts = Counter(reduce(list.__add__, transactions.values()))
+    item_counts = Counter(itertools.chain(*transactions.values()))
 
     candidate = {(item,): count for item, count in item_counts.items()}
     frequent = {itemset: count for itemset, count in candidate.items()
