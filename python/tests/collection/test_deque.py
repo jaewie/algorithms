@@ -10,7 +10,7 @@ class TestDeque(unittest.TestCase):
     def test_constructor(self):
         self.assertEqual(self.deque._head,  None)
         self.assertEqual(self.deque._tail,  None)
-        self.assertEqual(self.deque._count, 0)
+        self.assertEqual(self.deque._size, 0)
 
     def test_append(self):
         self.deque.append(0)
@@ -58,9 +58,9 @@ class TestDeque(unittest.TestCase):
         self.assertEquals(2, self.deque.popleft().val)
         self.assertRaises(IndexError, self.deque.popleft)
 
-    def test_count(self):
-        self.assertEquals(0, self.deque.count)
+    def test_len(self):
+        self.assertEquals(0, len(self.deque))
         self.deque.append(0)
-        self.assertEquals(1, self.deque.count)
+        self.assertEquals(1, len(self.deque))
         self.deque.append(1)
-        self.assertEquals(2, self.deque.count)
+        self.assertEquals(2, len(self.deque))
