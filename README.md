@@ -144,5 +144,6 @@ Algorithms and Data Structures
 - [ ] PageRank
 - [ ] Quadtree
 - [ ] Spell checker
+- [ ] Q-Learning
 - [x] Huffman encoding
 - [x] Simulated annealing
