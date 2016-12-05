@@ -48,6 +48,7 @@ Algorithms and Data Structures
 - [Sweep line algorithm](python/computational_geometry/sweep_line.py)
 
 ### Concurrency
+- [Bakery algorithm](python/concurrency/bakery_algorithm.py)
 - [Barrier](python/concurrency/synchronization.py)
 - [Dining philosophers problem](python/concurrency/dining_philosophers.py)
 - [Dining savages problem](python/concurrency/dining_savages.py)
