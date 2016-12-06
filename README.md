@@ -141,10 +141,12 @@ Algorithms and Data Structures
 - [Rabin-Karp algorithm](python/strings/match.py)
 
 ### For future
-- [x] Apriori algorithm
+- [ ] Alpha-beta pruning
+- [ ] Minimax
 - [ ] PageRank
+- [ ] Q-Learning
 - [ ] Quadtree
 - [ ] Spell checker
-- [ ] Q-Learning
+- [x] Apriori algorithm
 - [x] Huffman encoding
 - [x] Simulated annealing
