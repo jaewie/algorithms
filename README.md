@@ -68,6 +68,7 @@ Algorithms and Data Structures
 
 ### Graphs
 - [A*](python/graphs/graph_algos.py)
+- [Alpha-beta pruning](python/graphs/alpha_beta.py)
 - [AVL Tree](python/graphs/avl.py)
 - [BFS and DFS](python/graphs/graph_algos.py)
 - [Binary search tree](python/graphs/bst.py)
@@ -141,7 +142,7 @@ Algorithms and Data Structures
 - [Rabin-Karp algorithm](python/strings/match.py)
 
 ### For future
-- [ ] Alpha-beta pruning
+- [x] Alpha-beta pruning
 - [ ] Minimax
 - [ ] PageRank
 - [ ] Q-Learning
