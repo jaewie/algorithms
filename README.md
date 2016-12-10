@@ -143,6 +143,8 @@ Algorithms and Data Structures
 
 ### For future
 - [ ] Constraint programming
+- [ ] Fibonacci heap
+- [ ] Join-idle queue
 - [ ] Minimax
 - [ ] PageRank
 - [ ] Q-Learning
