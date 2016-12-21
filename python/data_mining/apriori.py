@@ -1,47 +1,44 @@
-from collections import Counter
 import itertools
 
 
 def apriori(transactions, min_support_count):
-    # TODO: refactor and optimize
-    item_counts = Counter(itertools.chain(*transactions.values()))
-
-    candidate = {(item,): count for item, count in item_counts.items()}
-    frequent = {itemset: count for itemset, count in candidate.items()
-                if count >= min_support_count}
-
-    if not frequent:
+    domain = reduce(set.union, transactions, set())
+    candidates = {frozenset([item]): sum(item in t for t in transactions) for item in domain}
+    filtered_candidates = {k: v for k, v in candidates.items() if v >= min_support_count}
+    if not filtered_candidates:
         return {}
 
-
     for k in itertools.count(start=2):
-        current_items = reduce(set.union, map(set, frequent.keys()))
-        new_itemset_combos = itertools.combinations(current_items, k)
-        new_filtered_itemset_combos = []
+        domain = reduce(set.union, filtered_candidates, set())
+        possible_itemsets = extend_combos(filtered_candidates.keys(), domain)
 
-        # Pruning step
-        # The idea here is that in order for a combo to have at least
-        # min_support_count, all of its (k - 1) combo has to have
-        # count of at least min_support_count
-        for itemset in new_itemset_combos:
-            if all(frequent.get(sub_itemset, 0) >= min_support_count
-                   for sub_itemset in itertools.combinations(itemset, k - 1)):
-                new_filtered_itemset_combos.append(itemset)
+        candidates = {itemset: sum(set(itemset).issubset(t) for t in transactions)
+                      for itemset in possible_itemsets}
+        new_filtered_candidates = {k: v for k, v in candidates.items() if v >= min_support_count}
 
-        # Find new candidate subsets
-        new_candidate = {}
-        for itemset in new_filtered_itemset_combos:
-            count = sum(set(itemset).issubset(transaction_itemset)
-                        for transaction_itemset in transactions.values())
-
-            new_candidate[itemset] = count
-
-        # Find new frequent subsets
-        new_frequent = {itemset: count for itemset, count
-                        in new_candidate.items() if count >= min_support_count}
-
-        if new_frequent:
-            candidate = new_candidate
-            frequent = new_frequent
+        if new_filtered_candidates:
+            filtered_candidates = new_filtered_candidates
         else:
-            return frequent
+            return filtered_candidates
+
+
+def extend_combos(combos, domain):
+    result = set()
+
+    for combo in combos:
+        for item in domain:
+            if item not in combo:
+                result.add(combo | set([item]))
+    return result
+
+
+if __name__ == '__main__':
+    transactions = [{1,2,3,4},
+                    {1,2,4},
+                    {1,2},
+                    {2,3,4},
+                    {2,3},
+                    {3,4},
+                    {2,4}]
+    min_support_count = 3
+    print apriori(transactions, min_support_count)
