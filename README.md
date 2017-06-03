@@ -79,6 +79,7 @@ Algorithms and Data Structures
 - [Huffman encoding](python/graphs/huffman_encoding.py)
 - [Inorder traversal](python/graphs/graph_algos.py)
 - [Interval tree](python/graphs/interval_tree.py)
+- [Leftist tree](python/graphs/leftist_tree.py)
 - [Kruskal's algorithm](python/graphs/graph_algos.py)
 - [Merkle tree](python/graphs/merkle_tree.py)
 - [Prim's algorithm](python/graphs/graph_algos.py)
