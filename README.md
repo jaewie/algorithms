@@ -71,6 +71,7 @@ Algorithms and Data Structures
 - [Alpha-beta pruning](python/graphs/alpha_beta.py)
 - [AVL Tree](python/graphs/avl.py)
 - [BFS and DFS](python/graphs/graph_algos.py)
+- [Binary indexed tree](python/graphs/binary_indexed_tree.py)
 - [Binary search tree](python/graphs/bst.py)
 - [Deepening depth first search](python/graphs/graph_algos.py)
 - [Depth limited search](python/graphs/graph_algos.py)
