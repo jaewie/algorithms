@@ -39,3 +39,7 @@ def _hash(node0, node1):
         key += 'None'
 
     return sha1(key).hexdigest()
+
+def hash(left_child, right_child, value):
+    key = ''.join((left_child.hash, right_child.hash, sha1(value).hexdigest()))
+    return sha1(key).hexdigest()
