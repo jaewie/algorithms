@@ -3,7 +3,7 @@ Algorithms and Data Structures
 
 [![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat)](/LICENSE)
 
-This is my attempt at implementing every algorithm and data structure I come across.
+This is my attempt at implementing every algorithm and data structure I come across. They were implemented for educational purposes, and is not for production use!
 
 **Table of Contents**
 
