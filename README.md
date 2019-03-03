@@ -21,6 +21,7 @@ This is my attempt at implementing every algorithm and data structure I come acr
    - [Machine learning](#machine-learning)
    - [Numeric](#numeric)
    - [Probabilistic](#probabilistic)
+   - [Ratelimit](#ratelimit)
    - [Sequences](#sequences)
    - [Simulation](#simulation)
    - [Sort](#sort)
@@ -115,6 +116,9 @@ This is my attempt at implementing every algorithm and data structure I come acr
 
 ### Probabilistic
 - [Bloom filter](python/probabilistic/bloom_filter.py)
+
+### Ratelimit
+- [Ratelimit](python/ratelimit/ratelimit.py)
 
 ### Sequences
 - [Binary search](python/sequences/arrays.py)
